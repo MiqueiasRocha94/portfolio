@@ -1,0 +1,175 @@
+:root,
+html[data-theme="light"] {
+  --font-manrope: var(--font-manrope-web), "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-geist-mono: "Cascadia Mono", "Consolas", "SFMono-Regular", monospace;
+  --font-scale: 1;
+  --color-primary: #004512;
+  /* Derivada da primaria (tom mais escuro) — nao configuravel no esquema. */
+  --color-primary-strong: #012308;
+  --color-secondary: #f2b544;
+  --color-tertiary: #2f7fae;
+  --color-on-primary: #f7faf9;
+  --color-on-primary-strong: #f7faf9;
+  --color-on-secondary: #141a17;
+  --color-on-tertiary: #f7faf9;
+  --color-on-success: #f7faf9;
+  --color-warning: #ca8a04;
+  --color-on-warning: #141a17;
+  --color-on-error: #f7faf9;
+  --color-background: #f6f3eb;
+  --color-surface: #fffdf8;
+  --color-surface-strong: #e8dfcf;
+  --color-text: #1f2933;
+  --color-text-muted: #52606d;
+  --color-border: #d8d1c2;
+  --color-success: #1e7a46;
+  --color-error: #b8351f;
+  /* Veu (scrim) sobre fotos, modais e visualizadores: escuro nos dois temas para
+     o conteudo por cima continuar legivel; --color-on-overlay e o texto sobre ele. */
+  --color-overlay: #000000;
+  --color-on-overlay: #f7faf9;
+  /* Areas do layout — fallback derivado das cores base (o ThemeProvider
+     sobrescreve com valores concretos e personalizaveis por modo). Como
+     referenciam os tokens base, adaptam-se sozinhas a light/dark. */
+  --color-header-background: var(--color-surface);
+  --color-header-foreground: var(--color-text);
+  --color-header-border: var(--color-border);
+  --color-sidebar-background: var(--color-surface);
+  --color-sidebar-foreground: var(--color-text);
+  --color-sidebar-border: var(--color-border);
+  --color-left-sidebar-background: var(--color-surface);
+  --color-left-sidebar-foreground: var(--color-text);
+  --color-left-sidebar-border: var(--color-border);
+  --color-right-sidebar-background: var(--color-surface);
+  --color-right-sidebar-foreground: var(--color-text);
+  --color-right-sidebar-border: var(--color-border);
+  --color-footer-background: var(--color-surface);
+  --color-footer-foreground: var(--color-text-muted);
+  --color-footer-border: var(--color-border);
+  /* Paleta categorica de graficos (estilo shadcn --chart-1..5). */
+  --chart-1: #0f5f4b;
+  --chart-2: #f2b544;
+  --chart-3: #2f7fae;
+  --chart-4: #b8553f;
+  --chart-5: #7b54b0;
+  --shadow-soft: 0 24px 60px rgba(15, 95, 75, 0.12);
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  /* Altura da barra do topo do MainContent (py-3 + botao size-9 + borda),
+     compartilhada com o cabecalho da sidebar para as bordas alinharem. */
+  --layout-content-top-height: calc(3.75rem + 1px);
+}
+
+html[data-theme="dark"] {
+  --color-primary: #83d1b7;
+  --color-primary-strong: #3ca17f;
+  --color-secondary: #ffcf73;
+  --color-tertiary: #6cb7e0;
+  --color-on-primary: #141a17;
+  --color-on-primary-strong: #141a17;
+  --color-on-secondary: #141a17;
+  --color-on-tertiary: #141a17;
+  --color-on-success: #141a17;
+  --color-on-error: #141a17;
+  --color-background: #121212;
+  --color-surface: #1c1c1c;
+  --color-surface-strong: #2a2a2a;
+  --color-text: #f2f2f2;
+  --color-text-muted: #bcbcbc;
+  --color-border: #383838;
+  --color-success: #54d38f;
+  --color-warning: #ffc94d;
+  --color-on-warning: #141a17;
+  --color-error: #ff836e;
+  --chart-1: #83d1b7;
+  --chart-2: #ffcf73;
+  --chart-3: #6cb7e0;
+  --chart-4: #f0937a;
+  --chart-5: #b79be6;
+  --shadow-soft: 0 24px 60px rgba(0, 0, 0, 0.28);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --color-primary: #83d1b7;
+    --color-primary-strong: #3ca17f;
+    --color-secondary: #ffcf73;
+    --color-tertiary: #6cb7e0;
+    --color-on-primary: #141a17;
+    --color-on-primary-strong: #141a17;
+    --color-on-secondary: #141a17;
+    --color-on-tertiary: #141a17;
+    --color-on-success: #141a17;
+    --color-on-error: #141a17;
+    --color-background: #121212;
+    --color-surface: #1c1c1c;
+    --color-surface-strong: #2a2a2a;
+    --color-text: #f2f2f2;
+    --color-text-muted: #bcbcbc;
+    --color-border: #383838;
+    --color-success: #54d38f;
+    --color-warning: #ffc94d;
+    --color-on-warning: #141a17;
+    --color-error: #ff836e;
+    --chart-1: #83d1b7;
+    --chart-2: #ffcf73;
+    --chart-3: #6cb7e0;
+    --chart-4: #f0937a;
+    --chart-5: #b79be6;
+    --shadow-soft: 0 24px 60px rgba(0, 0, 0, 0.28);
+  }
+}
+
+/* Arredondamento global (painel do sistema, aplicado como data-radius pelo
+   ThemeProvider): "high" aumenta os raios, "light" reduz, "none" zera; sem o
+   atributo (Moderado) valem os raios do tema. Cobre os utilitários rounded-*
+   do Tailwind e os tokens --radius-* próprios; rounded-full (círculos:
+   avatares, FABs) não é afetado. */
+html[data-radius="high"] {
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 2rem;
+  --radius-2xl: 2.75rem;
+  --radius-3xl: 2rem;
+  --radius-4xl: 2.5rem;
+}
+
+html[data-radius="light"] {
+  --radius-xs: 1px;
+  --radius-sm: 0.125rem;
+  --radius-md: 0.25rem;
+  --radius-lg: 0.375rem;
+  --radius-xl: 0.5rem;
+  --radius-2xl: 0.625rem;
+  --radius-3xl: 0.75rem;
+  --radius-4xl: 1rem;
+}
+
+html[data-radius="none"] {
+  --radius-xs: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-4xl: 0px;
+}
+
+/* A escala (--font-scale) é definida pelo ThemeProvider combinando o preset com
+   o ratio do usuário (Tamanho da fonte). Os presets controlam só a família. */
+/* Manrope (webfont self-hosted) — fonte padrão, idêntica em todo dispositivo. */
+html[data-font="manrope"] {
+  --font-manrope: var(--font-manrope-web), "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Fonte do próprio dispositivo/SO (adapta por plataforma: San Francisco, Roboto…). */
+html[data-font="system"] {
+  --font-manrope: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+html[data-font="reading"] {
+  --font-manrope: Georgia, "Times New Roman", serif;
+}

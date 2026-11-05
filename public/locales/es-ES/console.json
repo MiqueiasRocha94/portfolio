@@ -1,0 +1,66 @@
+{
+  "nav": {
+    "dashboard": "Panel",
+    "docker": "Docker",
+    "chat": "Chat IA",
+    "apache": "Apache",
+    "router": "Router"
+  },
+  "dashboard": {
+    "title": "Resumen del entorno",
+    "docker": "Docker",
+    "operation": "Operación",
+    "running": "Contenedores activos",
+    "cpu": "CPU total",
+    "memoryUsed": "Memoria usada",
+    "memoryTotal": "Memoria total",
+    "disk": "Disco Docker",
+    "host": "Host",
+    "chat": "Asistente",
+    "chatStatus": "Estado",
+    "online": "En línea",
+    "offline": "Fuera de línea",
+    "loadError": "No se pudo cargar Docker."
+  },
+  "docker": {
+    "containers": "Contenedores",
+    "images": "Imágenes",
+    "networks": "Redes",
+    "volumes": "Volúmenes",
+    "start": "Iniciar",
+    "stop": "Detener",
+    "restart": "Reiniciar",
+    "remove": "Eliminar",
+    "untagged": "sin etiqueta",
+    "driver": "Driver",
+    "empty": "No se encontró nada.",
+    "loadError": "No se pudo cargar.",
+    "confirmRemove": "¿Eliminar \"{{name}}\"? La acción no se puede deshacer.",
+    "done": "Acción completada.",
+    "actionError": "La acción falló."
+  },
+  "chat": {
+    "title": "Chat IA",
+    "admin": "Chat (admin)",
+    "visitor": "Chat (visitante)",
+    "context": "Contexto",
+    "scripts": "Scripts",
+    "contextName": "Nombre del contexto",
+    "contextBody": "Contexto de la IA (Markdown)",
+    "command": "Comando (Markdown)",
+    "model": "Modelo",
+    "active": "Activo",
+    "edit": "Editar",
+    "preview": "Vista previa",
+    "save": "Guardar",
+    "newItem": "Nuevo",
+    "saved": "Guardado.",
+    "saveError": "No se pudo guardar.",
+    "loadError": "No se pudo cargar.",
+    "noPrompts": "Ningún script registrado."
+  },
+  "placeholder": {
+    "apache": "Configuración y VirtualHosts de Apache — integración aún no disponible.",
+    "router": "Estado y dispositivos del router — integración aún no disponible."
+  }
+}

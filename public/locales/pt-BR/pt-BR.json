@@ -1,0 +1,217 @@
+{
+  "appName": "Base Multiplataforma",
+  "tagline": "Next.js no centro. Mobile pronto nas bordas.",
+  "nav": {
+    "title": "Menu",
+    "approvals": "Aprovacoes",
+    "documentation": "Documentacao",
+    "start": "Start",
+    "home": "Home",
+    "login": "Entrar",
+    "portal": "Painel",
+    "operations": "Operacoes",
+    "profile": "Profile",
+    "reports": "Relatorios",
+    "search": "Buscar no menu",
+    "empty": "Nenhum item encontrado",
+    "pin": "Fixar na barra",
+    "unpin": "Desafixar da barra",
+    "sectionAccount": "Conta",
+    "sectionNavigation": "Navegação",
+    "actions": "Ações",
+    "results": "Resultados",
+    "docker": "Docker",
+    "chat": "Chat IA",
+    "apache": "Apache",
+    "router": "Roteador",
+    "publicHome": "Início",
+    "about": "Sobre",
+    "uriel": "Uriel"
+  },
+  "common": {
+    "locale": "Idioma",
+    "web": "Web-first",
+    "mobile": "Mobile-ready",
+    "platform": "Plataforma",
+    "signOut": "Sair",
+    "loading": "Carregando...",
+    "session": "Sessao",
+    "close": "Fechar",
+    "confirm": "Confirmar",
+    "cancel": "Cancelar",
+    "pressBackAgainToExit": "Toque em voltar de novo para sair",
+    "saved": "Registro salvo.",
+    "deleted": "Registro excluído."
+  },
+  "account": {
+    "menuProfile": "Perfil",
+    "menuConfig": "Configurações",
+    "menuSignOut": "Sair",
+    "languageTitle": "Idioma",
+    "themeTitle": "Tema",
+    "themeSystem": "Sistema",
+    "themeLight": "Claro",
+    "themeDark": "Escuro"
+  },
+  "landing": {
+    "eyebrow": "Base unificada",
+    "title": "Template para projetos web e mobile sem misturar arquitetura.",
+    "description": "Esta base segue o guia do repositorio: Next.js organiza a aplicacao, Capacitor encapsula o nativo e a logica reaproveitavel do Expo entra como dominio compartilhado.",
+    "primaryCta": "Abrir start",
+    "secondaryCta": "Ir para home",
+    "portalCta": "Entrar no portal",
+    "localePrompt": "Escolha um idioma inicial"
+  },
+  "start": {
+    "badge": "Ponto de partida",
+    "title": "Uma fundacao pronta para crescer em web, Android e iOS.",
+    "description": "A estrutura usa src/app, rotas publicas e portal protegido, i18n inspirado na Base-Next e adaptadores moveis isolados para biometria, camera, arquivos e notificacoes.",
+    "pillars": [
+      {
+        "title": "Estrutura Base-Next",
+        "body": "A organizacao segue a base web como padrao principal. O App Router dita paginas publicas, layout e portal protegido."
+      },
+      {
+        "title": "i18n no estilo Base-Next",
+        "body": "Os textos vivem em public/locales e a camada cliente usa i18next com detector e backend HTTP, como na referencia web."
+      },
+      {
+        "title": "Protecao adaptada do Expo",
+        "body": "O portal alterna a protecao conforme plataforma: web valida sessao; mobile pode exigir biometria antes de liberar a area protegida."
+      }
+    ]
+  },
+  "login": {
+    "title": "Login",
+    "email": "E-mail",
+    "password": "Senha",
+    "submit": "Entrar",
+    "error": "Nao foi possivel concluir o login.",
+    "biometricOptIn": "Manter conectado com biometria",
+    "loginPlaceholder": "Usuário",
+    "captcha": "Confirme a verificação de segurança.",
+    "otherUser": "Outro usuário",
+    "useBiometric": "Entrar com biometria",
+    "profileUnavailable": "Este perfil ainda não está disponível no aplicativo. Use o portal web.",
+    "exit": "Sair"
+  },
+  "portal": {
+    "badge": "Area protegida",
+    "title": "Portal protegido com fluxo adaptado por plataforma.",
+    "subtitle": "No web, a sessao segue a logica baseada em cookies. No mobile, a sessao pode ser reforcada por biometria antes de liberar o portal.",
+    "sections": [
+      "Sessao persistida em storage e cookies para espelhar o comportamento web da Base-Next.",
+      "Preferencia biometrica por usuario inspirada na protecao da Base-Expo.",
+      "Portal isolado em /portal para separar claramente o publico do protegido."
+    ],
+    "mobileMessage": "Biometria ativa no mobile: ao entrar no portal, a identidade pode ser validada antes de liberar o conteudo.",
+    "webMessage": "Fluxo web: a navegacao protegida depende da sessao atual, sem prompt biometrico.",
+    "retry": "Tentar novamente",
+    "biometricTitle": "Biometria necessaria",
+    "biometricDescription": "Confirme sua identidade para continuar usando o portal no dispositivo.",
+    "checkingTitle": "Validando acesso",
+    "checkingDescription": "Aguarde a confirmacao no dispositivo."
+  },
+  "home": {
+    "badge": "Area publica",
+    "title": "Home publica da base unificada.",
+    "subtitle": "Esta rota agora funciona como showcase de componentes, mocks e padroes de layout para o produto web-first.",
+    "mobileBadge": "Acesso rapido",
+    "mobileTitle": "Entrada publica simplificada",
+    "mobileSubtitle": "No mobile sem sessao, a home publica fica reduzida para os fluxos principais e configuracoes rapidas.",
+    "publicDescription": "A home publica ficou propositalmente enxuta. Os exemplos e componentes de teste agora aparecem apenas dentro da home privada.",
+    "registerCta": "Cadastrar",
+    "quickConfigTitle": "Configuracoes rapidas",
+    "quickConfigSubtitle": "Idioma, tema e fonte acessiveis antes do login.",
+    "showcaseBadge": "Showcase UI",
+    "mockBadgeActive": "Mock ativo",
+    "mockBadgeInactive": "Mock pronto",
+    "tableTitle": "Fila operacional",
+    "tableSubtitle": "Exemplo de leitura unica: tabela no web e cards no telefone.",
+    "tableCaption": "Solicitacoes mockadas para validar a nova GenericTable.",
+    "formTitle": "Acoes e filtros",
+    "formSubtitle": "Area de teste para formularios compactos e botoes adaptaveis.",
+    "adaptiveAction": "Acao adaptavel",
+    "specialAction": "Acao especial",
+    "sections": [
+      "Start e Home permanecem publicos dentro da aplicacao.",
+      "Portal concentra apenas a experiencia autenticada e protegida.",
+      "O fluxo mobile pode adicionar biometria apenas quando o usuario entra na area privada."
+    ]
+  },
+  "register": {
+    "title": "Cadastro publico",
+    "subtitle": "Pagina simples de cadastro para validar a navegacao publica no teste atual.",
+    "description": "Aqui pode entrar o fluxo real de cadastro depois. Por enquanto, a tela existe para suportar a home mobile reduzida com dois botoes principais."
+  },
+  "table": {
+    "filters": "Filtros ativos",
+    "filtersActive": "Filtros",
+    "columns": "Colunas",
+    "showAllColumns": "Mostrar todas",
+    "resetColumns": "Restaurar padrão",
+    "moveColumnUp": "Mover para cima",
+    "moveColumnDown": "Mover para baixo",
+    "filtersTitle": "Filtros",
+    "tapToFilter": "Toque para filtrar",
+    "add": "Adicionar",
+    "export": "Exportar",
+    "details": "VER DETALHES",
+    "actions": "Acoes",
+    "close": "Fechar",
+    "apply": "Aplicar",
+    "clear": "Limpar",
+    "limit": "Limite",
+    "skip": "Pular",
+    "date": "Data",
+    "all": "Todos",
+    "last7": "Ultimos 7 dias",
+    "last15": "Ultimos 15 dias",
+    "last30": "Ultimos 30 dias",
+    "custom": "Personalizado",
+    "customFrom": "De",
+    "customTo": "Até"
+  },
+  "notFound": {
+    "title": "Pagina nao encontrada",
+    "description": "O endereco que voce tentou acessar nao existe ou foi movido.",
+    "button": "Voltar ao inicio"
+  },
+  "error": {
+    "title": "Algo deu errado",
+    "description": "Ocorreu um erro inesperado. Tente novamente em instantes.",
+    "retry": "Tentar novamente",
+    "back": "Voltar ao inicio",
+    "loadTitle": "Nao foi possivel carregar",
+    "unavailableTitle": "Recurso indisponivel",
+    "unavailableDescription": "Este recurso ainda nao esta disponivel. Tente novamente mais tarde."
+  },
+  "unauthorized": {
+    "title": "Acesso nao autorizado",
+    "description": "Voce nao tem permissao para acessar esta area.",
+    "button": "Voltar ao inicio"
+  },
+  "documentation": {
+    "badge": "Documentacao",
+    "title": "Documentacao da base",
+    "subtitle": "Guia completo do projeto: o README e todos os documentos da pasta docs, renderizados aqui.",
+    "indexLabel": "Indice da documentacao",
+    "empty": "Nenhum documento encontrado."
+  },
+  "chat": {
+    "titleVisitor": "Agente Virtual",
+    "titleAdmin": "Chat",
+    "greeting": "Olá 👋",
+    "intro": "Meu nome é Uriel. Sou um agente virtual particular de Miqueias Rocha. Fui criado para responder perguntas e apresentar informações sobre sua carreira, projetos, experiências e outros conteúdos relacionados à sua trajetória profissional. Se desejar conhecer mais sobre o trabalho, habilidades ou iniciativas de Miqueias Rocha, basta fazer uma pergunta para iniciar a conversa.",
+    "placeholder": "Faça sua pergunta...",
+    "send": "Enviar",
+    "sending": "...",
+    "showSource": "Ver texto fonte",
+    "hideSource": "Ocultar fonte",
+    "online": "Online",
+    "offlineStatus": "Offline",
+    "offline": "Serviço temporariamente offline.",
+    "noReply": "Sem resposta da IA.",
+    "error": "Erro ao obter resposta da API."
+  }
+}

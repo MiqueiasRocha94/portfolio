@@ -1,0 +1,66 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "docker": "Docker",
+    "chat": "AI Chat",
+    "apache": "Apache",
+    "router": "Router"
+  },
+  "dashboard": {
+    "title": "Environment summary",
+    "docker": "Docker",
+    "operation": "Operations",
+    "running": "Running containers",
+    "cpu": "Total CPU",
+    "memoryUsed": "Memory used",
+    "memoryTotal": "Total memory",
+    "disk": "Docker disk",
+    "host": "Host",
+    "chat": "Assistant",
+    "chatStatus": "Status",
+    "online": "Online",
+    "offline": "Offline",
+    "loadError": "Could not load Docker."
+  },
+  "docker": {
+    "containers": "Containers",
+    "images": "Images",
+    "networks": "Networks",
+    "volumes": "Volumes",
+    "start": "Start",
+    "stop": "Stop",
+    "restart": "Restart",
+    "remove": "Remove",
+    "untagged": "untagged",
+    "driver": "Driver",
+    "empty": "Nothing found.",
+    "loadError": "Could not load.",
+    "confirmRemove": "Remove \"{{name}}\"? This cannot be undone.",
+    "done": "Action completed.",
+    "actionError": "The action failed."
+  },
+  "chat": {
+    "title": "AI Chat",
+    "admin": "Chat (admin)",
+    "visitor": "Chat (visitor)",
+    "context": "Context",
+    "scripts": "Scripts",
+    "contextName": "Context name",
+    "contextBody": "AI context (Markdown)",
+    "command": "Command (Markdown)",
+    "model": "Model",
+    "active": "Active",
+    "edit": "Edit",
+    "preview": "Preview",
+    "save": "Save",
+    "newItem": "New",
+    "saved": "Saved.",
+    "saveError": "Could not save.",
+    "loadError": "Could not load.",
+    "noPrompts": "No scripts yet."
+  },
+  "placeholder": {
+    "apache": "Apache settings and VirtualHosts — integration not available yet.",
+    "router": "Router status and devices — integration not available yet."
+  }
+}

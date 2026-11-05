@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "theme": "dark",
+  "radiusPreset": "light",
+  "fontPreset": "manrope",
+  "fontScale": 1,
+  "layout": {
+    "headerVisible": true,
+    "leftSidebarVisible": true,
+    "rightSidebarVisible": true,
+    "footerVisible": true,
+    "chatVisible": true,
+    "headerReserveSpace": false,
+    "leftSidebarReserveSpace": false,
+    "rightSidebarReserveSpace": false,
+    "footerReserveSpace": false,
+    "headerHeight": 64,
+    "footerHeight": 48,
+    "leftSidebarWidth": 280,
+    "rightSidebarWidth": 280,
+    "leftSidebarDisplayMode": "full",
+    "rightSidebarDisplayMode": "full",
+    "leftSidebarLayoutMode": "structural",
+    "rightSidebarLayoutMode": "structural",
+    "sidebarCardMargin": 10,
+    "mainContentMode": "full",
+    "mainContentCardMargin": 10,
+    "zIndexHeader": 1000,
+    "zIndexFooter": 1000,
+    "accountPlacement": "auto"
+  },
+  "colorScheme": {
+    "activeSchemeId": "scheme-mr58y4tg",
+    "schemes": [
+      {
+        "id": "scheme-mr58y4tg",
+        "name": "Base",
+        "builtin": false,
+        "light": {
+          "primary": "#2563eb",
+          "secondary": "#3e8744",
+          "tertiary": "#f5b400"
+        }
+      }
+    ],
+    "areas": {
+      "header": {
+        "custom": true,
+        "colors": {
+          "background": "#000000",
+          "foreground": "#f2f2f2",
+          "border": "#3b0a0a"
+        }
+      },
+      "footer": {
+        "custom": true,
+        "colors": {
+          "background": "#000000",
+          "foreground": "#bcbcbc",
+          "border": "#3b0a0a"
+        }
+      },
+      "leftSidebar": {
+        "custom": true,
+        "colors": {
+          "background": "#000000",
+          "foreground": "#f2f2f2",
+          "border": "#3b0a0a"
+        }
+      },
+      "rightSidebar": {
+        "custom": true,
+        "colors": {
+          "background": "#000000",
+          "foreground": "#f2f2f2",
+          "border": "#3b0a0a"
+        }
+      }
+    },
+    "charts": {
+      "custom": false,
+      "colors": {
+        "chart1": "#9e0000",
+        "chart2": "#ffdf00",
+        "chart3": "#002776",
+        "chart4": "#661400",
+        "chart5": "#c77400"
+      }
+    }
+  }
+}

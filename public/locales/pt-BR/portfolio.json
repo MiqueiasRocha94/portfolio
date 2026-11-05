@@ -1,0 +1,129 @@
+{
+  "nav": {
+    "home": "Início",
+    "about": "Sobre",
+    "chat": "Uriel",
+    "login": "Login",
+    "portal": "Portal",
+    "label": "Navegação",
+    "social": "Redes"
+  },
+  "home": {
+    "role": "Tech Lead / Java Full Stack / IA Aplicada",
+    "learnMore": "Saiba mais",
+    "scrollDown": "Ir para a apresentação",
+    "scrollUp": "Voltar ao início",
+    "showHighlight": "Mostrar destaque {{n}}",
+    "highlights": [
+      {
+        "title": "Foco em produto",
+        "description": "Back-end sólido em Java e front-end preciso com Next.js e UX pragmática."
+      },
+      {
+        "title": "Arquitetura limpa",
+        "description": "DDD, Clean Architecture e APIs com padrões claros e escaláveis."
+      },
+      {
+        "title": "IA aplicada",
+        "description": "Agentes locais com LLM, integração via API e fluxo conversacional real."
+      }
+    ]
+  },
+  "profile": {
+    "kicker": "Tech Lead · Belo Horizonte, BR",
+    "photoAlt": "Foto de Miqueias Rocha",
+    "projects": "Ver projetos →",
+    "talk": "Falar com o Uriel",
+    "facts": [
+      {
+        "k": "Atuação",
+        "v": "Desenvolvedor · BrTec"
+      },
+      {
+        "k": "Experiência",
+        "v": "Full Stack + Liderança"
+      },
+      {
+        "k": "Stack núcleo",
+        "v": "Java · Spring · Next.js"
+      },
+      {
+        "k": "Formação",
+        "v": "Ciência da Computação"
+      }
+    ],
+    "status": "Status",
+    "open": "Aberto a propostas",
+    "technologies": "Tecnologias",
+    "stats": "Estatísticas de Código & Contribuições",
+    "current": "Atual",
+    "backToTop": "Voltar ao topo",
+    "top": "↑ Topo",
+    "urielKicker": "Uriel · assistente de carreira",
+    "urielText": "Quer detalhes sobre projetos, stack ou experiência? Pergunte diretamente ao Uriel — o assistente de IA que conhece minha trajetória.",
+    "urielCta": "Pergunte qualquer coisa sobre o Miqueias…"
+  },
+  "gitStats": {
+    "github": {
+      "title": "GitHub Stats",
+      "items": [
+        "Total de Repositórios",
+        "Estrelas",
+        "Commits este ano"
+      ]
+    },
+    "gitlab": {
+      "title": "GitLab Stats",
+      "items": [
+        "Projetos",
+        "Contribuições",
+        "Issues Resolvidas"
+      ]
+    }
+  },
+  "header": {
+    "title": "Tech Lead | Java Full Stack Developer",
+    "description": "Sou Desenvolvedor Java e Líder Técnico com experiência Full Stack, focado em criar soluções robustas e eficientes. Atualmente, atuo na BrTec como desenvolvedor, onde fui efetivado e aprimoro minhas habilidades com as mais recentes tecnologias de desenvolvimento."
+  },
+  "about": {
+    "title": "Sobre Mim",
+    "paragraph1": "Tenho um domínio sólido em Java (Spring Boot, Hibernate), mas também possuo experiência relevante com outras linguagens e frameworks como Python, Node.js (Next.js) e PHP. Essa versatilidade me permite adaptar a diferentes desafios e atuar tanto no front-end quanto no back-end.",
+    "paragraph2": "Minha trajetória profissional é marcada por uma sólida experiência em gestão e coordenação, adquirida em cargos de liderança nos setores comercial e administrativo. Essas experiências me deram uma visão estratégica e habilidades interpessoais que hoje aplico na minha carreira como desenvolvedor."
+  },
+  "education": {
+    "title": "Formação Acadêmica",
+    "degrees": {
+      "title": "Bacharel em Ciência da Computação",
+      "university": "Universidade Fumec, 2021 - 2025",
+      "description": "Foco em algoritmos, estrutura de dados, redes e desenvolvimento de sistemas."
+    }
+  },
+  "timeline": {
+    "title": "Linha do Tempo da Carreira",
+    "brtec": {
+      "role": "Desenvolvedor de Software - BrTec",
+      "period": "2023 - Presente",
+      "description": "Ingressou como estagiário em 2023 na área de desenvolvimento de software e foi efetivado em 2024. Atua no desenvolvimento e manutenção de sistemas, aplicando tecnologias modernas de backend e frontend."
+    },
+    "itau": {
+      "role": "Estagiário de Comercial - Itaú",
+      "period": "Período acadêmico",
+      "description": "Iniciou a experiência no setor financeiro, adquirindo conhecimento sobre produtos financeiros, fundos de investimento, funcionamento de instituições públicas e privadas, além de desenvolver habilidades relacionadas a técnicas de venda e relacionamento com clientes."
+    },
+    "plansul": {
+      "role": "Assistente Administrativo - PlanSul (Prestação de serviços ao TJMG)",
+      "period": "2014 - 2019",
+      "description": "Atuação em organização de processos administrativos, análise de dados operacionais e suporte a rotinas institucionais do Tribunal de Justiça de Minas Gerais."
+    },
+    "comercio": {
+      "role": "Coordenação de Equipe - Comércio Local",
+      "period": "2013 - 2014",
+      "description": "Atuação em coordenação de equipe e gestão de atividades operacionais, desenvolvendo habilidades de liderança, comunicação e organização de processos."
+    },
+    "assprom": {
+      "role": "Menor Aprendiz - Assprom (TJMG)",
+      "period": "2010 - 2012",
+      "description": "Início da trajetória profissional prestando serviços para o Tribunal de Justiça de Minas Gerais, desenvolvendo disciplina profissional, organização e compreensão do funcionamento de instituições públicas."
+    }
+  }
+}

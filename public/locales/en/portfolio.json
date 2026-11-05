@@ -1,0 +1,129 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "chat": "Uriel",
+    "login": "Login",
+    "portal": "Portal",
+    "label": "Navigation",
+    "social": "Social"
+  },
+  "home": {
+    "role": "Tech Lead / Java Full Stack / Applied AI",
+    "learnMore": "Learn more",
+    "scrollDown": "Go to the introduction",
+    "scrollUp": "Back to the top",
+    "showHighlight": "Show highlight {{n}}",
+    "highlights": [
+      {
+        "title": "Product focus",
+        "description": "Solid Java back end and precise Next.js front end with pragmatic UX."
+      },
+      {
+        "title": "Clean architecture",
+        "description": "DDD, Clean Architecture and APIs with clear, scalable patterns."
+      },
+      {
+        "title": "Applied AI",
+        "description": "Local LLM agents, API integration and real conversational flows."
+      }
+    ]
+  },
+  "profile": {
+    "kicker": "Tech Lead · Belo Horizonte, BR",
+    "photoAlt": "Photo of Miqueias Rocha",
+    "projects": "See projects →",
+    "talk": "Talk to Uriel",
+    "facts": [
+      {
+        "k": "Role",
+        "v": "Developer · BrTec"
+      },
+      {
+        "k": "Experience",
+        "v": "Full Stack + Leadership"
+      },
+      {
+        "k": "Core stack",
+        "v": "Java · Spring · Next.js"
+      },
+      {
+        "k": "Education",
+        "v": "Computer Science"
+      }
+    ],
+    "status": "Status",
+    "open": "Open to opportunities",
+    "technologies": "Technologies",
+    "stats": "Code Statistics & Contributions",
+    "current": "Current",
+    "backToTop": "Back to top",
+    "top": "↑ Top",
+    "urielKicker": "Uriel · career assistant",
+    "urielText": "Want details about projects, stack or experience? Ask Uriel directly — the AI assistant that knows my career.",
+    "urielCta": "Ask anything about Miqueias…"
+  },
+  "gitStats": {
+    "github": {
+      "title": "GitHub Stats",
+      "items": [
+        "Total repositories",
+        "Stars",
+        "Commits this year"
+      ]
+    },
+    "gitlab": {
+      "title": "GitLab Stats",
+      "items": [
+        "Projects",
+        "Contributions",
+        "Resolved issues"
+      ]
+    }
+  },
+  "header": {
+    "title": "Tech Lead | Java Full Stack Developer",
+    "description": "I am a Java Developer and Technical Lead with Full Stack experience, focused on building robust and efficient solutions. Currently, I work at BrTec as a developer, where I was hired after my internship and continue improving my skills using modern development technologies."
+  },
+  "about": {
+    "title": "About Me",
+    "paragraph1": "I have strong expertise in Java (Spring Boot, Hibernate), but I also have relevant experience with other languages and frameworks such as Python, Node.js (Next.js), and PHP. This versatility allows me to adapt to different challenges and work on both front-end and back-end development.",
+    "paragraph2": "My professional background includes solid experience in management and coordination, acquired through leadership roles in commercial and administrative sectors. These experiences provided me with strategic vision and interpersonal skills that I now apply in my career as a software developer."
+  },
+  "education": {
+    "title": "Academic Background",
+    "degrees": {
+      "title": "Bachelor's Degree in Computer Science",
+      "university": "FUMEC University, 2021 - 2025",
+      "description": "Focused on algorithms, data structures, networks, and software development."
+    }
+  },
+  "timeline": {
+    "title": "Career Timeline",
+    "brtec": {
+      "role": "Software Developer - BrTec",
+      "period": "2023 - Present",
+      "description": "Joined as a software development intern in 2023 and became a full-time employee in 2024. Works on system development and maintenance using modern backend and frontend technologies."
+    },
+    "itau": {
+      "role": "Commercial Intern - Itaú",
+      "period": "During university",
+      "description": "Started experience in the financial sector, gaining knowledge about financial products, investment funds, and the structure of public and private institutions, while also developing sales techniques and client relationship skills."
+    },
+    "plansul": {
+      "role": "Administrative Assistant - PlanSul (Services for TJMG)",
+      "period": "2014 - 2019",
+      "description": "Worked with administrative process organization, operational data analysis, and institutional support routines at the Court of Justice of Minas Gerais."
+    },
+    "comercio": {
+      "role": "Team Coordination - Local Commerce",
+      "period": "2013 - 2014",
+      "description": "Responsible for team coordination and operational activity management, developing leadership, communication, and process organization skills."
+    },
+    "assprom": {
+      "role": "Apprentice - Assprom (TJMG)",
+      "period": "2010 - 2012",
+      "description": "Beginning of professional career providing services to the Court of Justice of Minas Gerais, developing professional discipline, organization, and understanding of public institutions."
+    }
+  }
+}

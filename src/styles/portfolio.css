@@ -1,0 +1,32 @@
+/* Portfólio público (docs/specs/portfolio-publico.md): layout livre, identidade
+   própria (fontes e animações). Não vale para o portal, que segue os tokens. */
+
+.font-display {
+  font-family: var(--font-display), "Chakra Petch", system-ui, sans-serif;
+}
+
+.font-code {
+  font-family: var(--font-code), "JetBrains Mono", ui-monospace, monospace;
+}
+
+@keyframes slideUpFade {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes emberPulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.4; }
+}
+.ember-pulse { animation: emberPulse 2.4s ease-in-out infinite; }
+
+@keyframes energyMove {
+  0% { left: -40%; }
+  100% { left: 120%; }
+}
+.animate-energy { animation: energyMove 2s linear infinite; }
+
+/* O brilho das linhas (.animate-energy) anima sempre, como o resto da home. */
+@media (prefers-reduced-motion: reduce) {
+  .ember-pulse { animation: none; }
+}

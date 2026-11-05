@@ -1,0 +1,37 @@
+"use client";
+
+import { useEffect } from "react";
+import { LucideTriangleAlert } from "lucide-react";
+
+import { StatusScreen } from "@/components/status-screen";
+import { useAuth } from "@/contexts/AuthContext";
+import { useLanguage } from "@/contexts/LanguageContext";
+
+export default function Error({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
+  const { session } = useAuth();
+  const { dictionary } = useLanguage();
+  const home = session ? "/portal/home" : "/";
+
+  useEffect(() => {
+    console.error("Erro capturado:", error);
+  }, [error]);
+
+  // Fora de dev fica a mensagem tratada, sem detalhe técnico.
+  let diagnostics = null as { code: string; origin: string; title: string; description: string } | null;
+
+  return (
+    <StatusScreen
+      code={diagnostics?.code ?? "500"}
+      tone="error"
+      icon={<LucideTriangleAlert className="size-8" />}
+      meta={diagnostics?.origin}
+      title={diagnostics?.title ?? dictionary.error.title}
+      description={diagnostics?.description || dictionary.error.description}
+      digest={error.digest}
+      actions={[
+        { label: dictionary.error.back, href: home, variant: "outline" },
+        { label: dictionary.error.retry, onClick: () => reset() },
+      ]}
+    />
+  );
+}
