@@ -16,12 +16,7 @@ adaptativo, web (Cloudflare Workers e Docker) e APK via Capacitor.
 Este repositório é o **espelho público**, gerado automaticamente a partir do projeto principal (privado): traz só o
 portfólio público. O que existe do lado privado está descrito, sem detalhes técnicos, em [PRIVADO.md](./PRIVADO.md).
 
-| Branch | Origem |
-| --- | --- |
-| `main` | versão publicada atual |
-| `oracle` | versão em preparo para a hospedagem própria |
-
-Cada commit `sync: <branch>@<sha>` corresponde a um commit do projeto principal; alterações feitas aqui são
+Cada commit `sync: master@<sha>` corresponde a um commit do projeto principal; alterações feitas aqui são
 sobrescritas na próxima sincronização. Sugestões são bem-vindas como issue.
 
 > Código em inglês, documentação em pt-BR.
