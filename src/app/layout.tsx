@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Chakra_Petch, JetBrains_Mono, Manrope } from "next/font/google";
+import Script from "next/script";
 
 import "@/app/globals.css";
 import { activeBrand } from "@/config/brand";
@@ -7,6 +8,9 @@ import { TooltipProvider } from "@/components/tooltip";
 import AppStructure from "@/components/layout/app-structure";
 import { VIEW_BOOTSTRAP_SCRIPT } from "@/lib/platform/view";
 import { THEME_BOOTSTRAP_CSS, THEME_BOOTSTRAP_SCRIPT } from "@/lib/theme/theme-bootstrap";
+
+// O app (build mobile) lê os endereços públicos do `app-config.js` do pacote (src/lib/env/runtime-config.ts).
+const LOADS_APP_CONFIG = process.env.NEXT_PUBLIC_BUILD_TARGET === "mobile";
 
 // Fonte padrão do sistema (whitelabel-agnóstica): self-hosted pelo next/font, então
 // renderiza IGUAL em todo dispositivo (web/Android/iOS) e funciona offline no APK.
@@ -39,6 +43,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     // o <html> do servidor não o tem — suppressHydrationWarning cobre só este nó.
     <html lang="pt-BR" className={`${manrope.variable} ${chakraPetch.variable} ${jetBrainsMono.variable}`} suppressHydrationWarning>
       <head>
+        {/* `beforeInteractive`: executa antes de qualquer módulo do Next. */}
+        {LOADS_APP_CONFIG ? <Script src="/app-config.js" strategy="beforeInteractive" /> : null}
         <script dangerouslySetInnerHTML={{ __html: VIEW_BOOTSTRAP_SCRIPT }} />
         {/* Cores da marca + preferências de tema ANTES da primeira pintura (sem
             o "pisca" dos tokens genéricos até o ThemeProvider hidratar). */}

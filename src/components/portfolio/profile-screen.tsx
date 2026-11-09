@@ -14,16 +14,18 @@ import {
   TimelineSection,
 } from "@/components/portfolio/profile-sections";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useChatAvailable } from "@/hooks/use-chat-available";
 import { usePortfolioText } from "@/hooks/use-portfolio-text";
 import { SOCIAL_LINKS } from "@/lib/portfolio/content";
 
 /**
- * Página "Sobre mim" (`/sobre-mim`): perfil, trajetória, tecnologias e atalho
- * para o Uriel. Header e barra inferior vêm do shell (RouteMeta).
+ * Página "Sobre mim" (`/sobre-mim`): perfil, trajetória, tecnologias e atalhos
+ * para o Uriel, só com o chat ligado. Header e barra inferior vêm do shell (RouteMeta).
  */
 export function ProfileScreen() {
   const t = usePortfolioText();
   const { dictionary } = useLanguage();
+  const chat = useChatAvailable() === true;
   const [showScrollTop, setShowScrollTop] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   // Quem rola é o conteúdo do shell (MainContent), não a janela.
@@ -73,12 +75,14 @@ export function ProfileScreen() {
                   >
                     {t.profile.projects}
                   </a>
-                  <Link
-                    href="/chat"
-                    className="font-display rounded-xl border border-primary/40 px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.12em] text-text transition hover:border-primary hover:bg-text/5"
-                  >
-                    {t.profile.talk}
-                  </Link>
+                  {chat && (
+                    <Link
+                      href="/chat"
+                      className="font-display rounded-xl border border-primary/40 px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.12em] text-text transition hover:border-primary hover:bg-text/5"
+                    >
+                      {t.profile.talk}
+                    </Link>
+                  )}
                 </div>
               </div>
             </section>
@@ -112,19 +116,21 @@ export function ProfileScreen() {
               <StatsSection t={t} />
             </div>
 
-            <div className="mt-12 rounded-2xl border border-primary/30 bg-background/40 p-6 sm:p-8">
-              <p className="font-display flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-text-muted">
-                <span className="ember-pulse size-2 rounded-full bg-success shadow-[0_0_9px_var(--color-success)]" />
-                {t.profile.urielKicker}
-              </p>
-              <p className="mt-3 text-text-muted">{t.profile.urielText}</p>
-              <Link
-                href="/chat"
-                className="font-code mt-5 inline-flex items-center gap-2 rounded-full border border-primary/40 bg-text/[0.03] px-5 py-3 text-sm text-text transition hover:border-primary hover:text-text"
-              >
-                <span className="text-primary">✦</span> {t.profile.urielCta}
-              </Link>
-            </div>
+            {chat && (
+              <div className="mt-12 rounded-2xl border border-primary/30 bg-background/40 p-6 sm:p-8">
+                <p className="font-display flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-text-muted">
+                  <span className="ember-pulse size-2 rounded-full bg-success shadow-[0_0_9px_var(--color-success)]" />
+                  {t.profile.urielKicker}
+                </p>
+                <p className="mt-3 text-text-muted">{t.profile.urielText}</p>
+                <Link
+                  href="/chat"
+                  className="font-code mt-5 inline-flex items-center gap-2 rounded-full border border-primary/40 bg-text/[0.03] px-5 py-3 text-sm text-text transition hover:border-primary hover:text-text"
+                >
+                  <span className="text-primary">✦</span> {t.profile.urielCta}
+                </Link>
+              </div>
+            )}
           </div>
         </div>
 

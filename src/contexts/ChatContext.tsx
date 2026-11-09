@@ -1,10 +1,13 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 
+import { useAuth } from "@/contexts/AuthContext";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { getNavigationArea } from "@/lib/navigation";
 import { getSessionItem, setSessionItem } from "@/lib/platform/storage";
-import { askChat, isChatOnline } from "@/services/chat";
+import { askChat, isChatOnline, loadPublicChatUrl } from "@/services/chat";
 import type { ChatAudience, ChatMessage } from "@/types/chat";
 
 /** Histórico guardado por público (o do portal não aparece no chat público). */
@@ -20,11 +23,15 @@ const HEALTH_RETRY_MS = [60 * 1000, 10 * 60 * 1000, 30 * 60 * 1000];
 type ByAudience<T> = Record<ChatAudience, T>;
 
 type ChatContextValue = {
+  /** Raiz da API do assistente na área atual; `""` = chat desligado; `null` enquanto o portal a resolve. */
+  chatUrl: string | null;
   /** Status do assistente; `null` enquanto a primeira verificação não volta. */
   online: boolean | null;
   messages: ByAudience<ChatMessage[]>;
   sending: ByAudience<boolean>;
   send: (audience: ChatAudience, text: string) => Promise<void>;
+  /** Entrega a raiz do portal; só o layout do portal chama. */
+  setPortalChatUrl: (url: string) => void;
 };
 
 const ChatContext = createContext<ChatContextValue | null>(null);
@@ -41,19 +48,36 @@ function readHistory(audience: ChatAudience): ChatMessage[] {
 const now = () => new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 
 /**
- * Estado único da conversa com o assistente (Uriel), para o app inteiro: uma
- * verificação de status e o histórico da sessão por público. O balão (região
- * `chat` do shell), o `/chat`, o chat do portal e o painel leem daqui
- * (docs/integracoes.md → "API do assistente (chat)").
+ * Estado único da conversa com o assistente (Uriel), para o app inteiro: a raiz
+ * da API na área atual, uma verificação de status e o histórico da sessão por
+ * público. No portfólio a raiz vem de `/config/chat`; no portal, o layout do
+ * portal a entrega por `setPortalChatUrl` (o portfólio não lê config privada). O balão (região `chat` do shell), o menu, o `/chat`, o chat do portal
+ * e o painel leem daqui (docs/integracoes.md → "API do assistente (chat)").
+ * Sem raiz, o chat fica desligado e não há verificação de status.
  */
 export function ChatProvider({ children }: { children: React.ReactNode }) {
   const { dictionary } = useLanguage();
   const texts = dictionary.chat;
+  const token = useAuth().session?.accessToken ?? null;
+  const inPortal = getNavigationArea(usePathname()) === "portal";
+  const loggedIn = Boolean(token);
+  const [portalUrl, setPortalUrl] = useState<string | null>(null);
+  // Sessão encerrada: a raiz do portal é buscada de novo no próximo login.
+  const [wasLoggedIn, setWasLoggedIn] = useState(loggedIn);
+  if (wasLoggedIn !== loggedIn) {
+    setWasLoggedIn(loggedIn);
+    if (!loggedIn) setPortalUrl(null);
+  }
+  // Raiz do portfólio: buscada uma vez, na primeira tela fora do portal.
+  const [publicUrl, setPublicUrl] = useState<string | null>(null);
+  const chatUrl = inPortal ? (loggedIn ? portalUrl : "") : publicUrl;
   const [messages, setMessages] = useState<ByAudience<ChatMessage[]>>(() => ({
     admin: readHistory("admin"),
     visitante: readHistory("visitante"),
   }));
-  const [online, setOnline] = useState<boolean | null>(null);
+  // Última verificação de status, da raiz em que foi feita (trocar de área recomeça).
+  const [health, setHealth] = useState<{ url: string; up: boolean } | null>(null);
+  const online = chatUrl === "" ? false : health && health.url === chatUrl ? health.up : null;
   const [sending, setSending] = useState<ByAudience<boolean>>({ admin: false, visitante: false });
   const messagesRef = useRef(messages);
 
@@ -64,7 +88,20 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
     }
   }, [messages]);
 
+  const needsPublicUrl = !inPortal && publicUrl === null;
   useEffect(() => {
+    if (!needsPublicUrl) return;
+    let alive = true;
+    void loadPublicChatUrl().then((url) => {
+      if (alive) setPublicUrl(url);
+    });
+    return () => {
+      alive = false;
+    };
+  }, [needsPublicUrl]);
+
+  useEffect(() => {
+    if (!chatUrl) return;
     let timeout: ReturnType<typeof setTimeout>;
     let failures = 0;
     let alive = true;
@@ -72,12 +109,12 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
     const check = async () => {
       let up = false;
       try {
-        up = await isChatOnline();
+        up = await isChatOnline(chatUrl);
       } catch {
         up = false;
       }
       if (!alive) return;
-      setOnline(up);
+      setHealth({ url: chatUrl, up });
       failures = up ? 0 : failures + 1;
       timeout = setTimeout(check, up ? HEALTH_OK_MS : HEALTH_RETRY_MS[Math.min(failures, HEALTH_RETRY_MS.length) - 1]);
     };
@@ -87,7 +124,7 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
       alive = false;
       clearTimeout(timeout);
     };
-  }, []);
+  }, [chatUrl]);
 
   const push = useCallback(
     (audience: ChatAudience, message: Omit<ChatMessage, "id" | "time">) =>
@@ -102,7 +139,7 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
     async (audience: ChatAudience, text: string) => {
       const question = text.trim();
       if (!question) return;
-      if (!online) {
+      if (!online || !chatUrl) {
         push(audience, { text: texts.offline, fromUser: false });
         return;
       }
@@ -113,7 +150,7 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
       push(audience, { text: question, fromUser: true });
       setSending((prev) => ({ ...prev, [audience]: true }));
       try {
-        const reply = await askChat(question, previous, audience);
+        const reply = await askChat(chatUrl, question, previous, audience);
         push(audience, { text: reply || texts.noReply, fromUser: false });
       } catch {
         push(audience, { text: texts.error, fromUser: false });
@@ -121,10 +158,13 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
         setSending((prev) => ({ ...prev, [audience]: false }));
       }
     },
-    [online, push, texts],
+    [chatUrl, online, push, texts],
   );
 
-  const value = useMemo(() => ({ online, messages, sending, send }), [online, messages, sending, send]);
+  const value = useMemo(
+    () => ({ chatUrl, online, messages, sending, send, setPortalChatUrl: setPortalUrl }),
+    [chatUrl, online, messages, sending, send],
+  );
 
   return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>;
 }

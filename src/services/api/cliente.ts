@@ -1,6 +1,7 @@
 import { usaCookieDeRenovacao } from "@/lib/auth/canal";
 import { criarProvaDpop, tokenVinculado } from "@/lib/auth/dpop";
 import { clearSession, getSession, saveSession, sessaoRenovavel, type AuthSession } from "@/lib/auth/session";
+import { runtimeUrl } from "@/lib/env/runtime-config";
 import { apiFetch, HttpError } from "@/lib/http";
 import type { SessaoAcesso } from "@/types/acesso";
 
@@ -20,9 +21,10 @@ import type { SessaoAcesso } from "@/types/acesso";
 /**
  * Raiz da API autenticada — SEPARADA da API do portal de proposito: o auth pode
  * estar num dominio diferente e ir para a API real enquanto o portal segue no mock
- * (`NEXT_PUBLIC_API_BASE_URL` vazio). Sem fallback: vazia = dev-backend.
+ * (`NEXT_PUBLIC_API_BASE_URL` vazio). Sem fallback: vazia = dev-backend. Lida em runtime
+ * (`runtimeUrl`): o pacote da atualização remota pode trocá-la.
  */
-export const ACESSO_API_URL = process.env.NEXT_PUBLIC_ACESSO_API_URL ?? "";
+export const acessoApiUrl = () => runtimeUrl("acessoApiUrl");
 
 type OpcoesApi = RequestInit & {
   token?: string;
@@ -51,7 +53,7 @@ async function enviar(caminho: string, init: RequestInit, token?: string, repeti
     headers.set("Authorization", `${tokenVinculado(token) ? "DPoP" : "Bearer"} ${token}`);
   }
   const metodo = init.method ?? "GET";
-  let raiz = ACESSO_API_URL;
+  let raiz = acessoApiUrl();
   headers.set("DPoP", await criarProvaDpop(metodo, `${raiz}${caminho}`, { token, nonce: nonceDpop }));
   const credentials = usaCookieDeRenovacao() && caminho.startsWith("/auth/") ? "include" : init.credentials;
 

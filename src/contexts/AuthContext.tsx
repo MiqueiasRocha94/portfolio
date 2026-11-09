@@ -15,6 +15,7 @@ import {
 } from "@/lib/auth/session";
 import {
   hasSavedProtectedSession,
+  lockSession,
   resolveProtectedAccessMode,
   skipBiometricAutoPromptOnce,
   type ProtectedAccessMode,
@@ -27,6 +28,8 @@ import type { Permission, Role, User } from "@/types/user";
 
 type AuthContextValue = {
   isReady: boolean;
+  /** A revalidação da sessão salva na abertura (`/me`) terminou. */
+  isVerified: boolean;
   session: AuthSession | null;
   /** Identidade autenticada completa — fonte de verdade da autorizacao na UI. */
   user: User | null;
@@ -62,6 +65,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [biometricEnabled, setBiometricEnabledState] = useState(false);
   const [isReady, setIsReady] = useState(false);
+  const [isVerified, setIsVerified] = useState(false);
 
   const apply = useCallback((next: AuthSession | null) => {
     setSession(next);
@@ -77,10 +81,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       void acesso.sair(atual.accessToken).catch(() => undefined);
     }
     clearSession();
+    lockSession();
     apply(null);
   }, [apply]);
 
   const leaveSession = useCallback(async () => {
+    lockSession();
     if ((await resolveProtectedAccessMode()) === "biometric") {
       skipBiometricAutoPromptOnce();
       return;
@@ -138,6 +144,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     void (async () => {
       await Promise.resolve();
       await refreshSession();
+      setIsVerified(true);
     })();
   }, [refreshSession]);
 
@@ -165,6 +172,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const value = useMemo<AuthContextValue>(
     () => ({
       isReady,
+      isVerified,
       session,
       user,
       roles: user?.authorization.roles ?? [],
@@ -182,6 +190,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       biometricEnabled,
       handleSetBiometricEnabled,
       isReady,
+      isVerified,
       leaveSession,
       refreshSession,
       session,

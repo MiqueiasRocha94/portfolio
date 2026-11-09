@@ -7,6 +7,7 @@ import { MessageCircle, SendHorizontal, X } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useSystemContext } from "@/contexts/SystemContext";
 import { useChat } from "@/hooks/use-chat";
+import { useChatAvailable } from "@/hooks/use-chat-available";
 import { getNavigationArea } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
 
@@ -20,12 +21,13 @@ const PREVIEW_CHARS = 180;
  * Fica no canto do corpo do shell, acima do footer; uma barra inferior própria
  * da página (`data-page-bottom-nav`, ex.: a home) o empurra para cima. No
  * portfólio conversa como visitante (histórico do `/chat`); no portal, como
- * administrador (histórico do chat do portal).
+ * administrador (histórico do chat do portal). Sem a URL do assistente, não aparece.
  */
 export function ChatFab() {
   const { layout } = useSystemContext();
   const pathname = usePathname();
-  if (!layout.chat) {
+  const available = useChatAvailable();
+  if (!layout.chat || !available) {
     return null;
   }
   const audience = getNavigationArea(pathname) === "portal" ? "admin" : "visitante";

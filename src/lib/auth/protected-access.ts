@@ -45,3 +45,35 @@ export async function hasSavedProtectedSession(): Promise<boolean> {
   const mode = await resolveProtectedAccessMode();
   return mode === "web-session" || mode === "biometric";
 }
+
+// Sessão liberada nesta execução do app: a sessão restaurada do storage não abre o
+// portal sozinha; precisa da biometria (ou do login com senha, quando não há
+// biometria) a cada abertura (docs/autenticacao-e-permissoes.md → "Biometria").
+// Estado de módulo: some ao fechar o app e ao recarregar o pacote.
+let sessionUnlocked = false;
+
+export function markSessionUnlocked() {
+  sessionUnlocked = true;
+}
+
+export function lockSession() {
+  sessionUnlocked = false;
+}
+
+export function isSessionUnlocked() {
+  return sessionUnlocked;
+}
+
+// A consulta da atualização remota no início foi recusada por autenticação: depois
+// da biometria, a sessão é renovada e o início consulta de novo.
+let renewAfterUnlock = false;
+
+export function requestRenewalAfterUnlock() {
+  renewAfterUnlock = true;
+}
+
+export function takeRenewalAfterUnlock() {
+  const pending = renewAfterUnlock;
+  renewAfterUnlock = false;
+  return pending;
+}

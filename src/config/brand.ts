@@ -86,7 +86,7 @@ export function brandThemeContract(profile: BrandProfile): BrandThemeContract {
   };
 }
 
-/** Default quando `NEXT_PUBLIC_BRAND` não está setada (ex.: dev, homolog). */
+/** Default quando `NEXT_PUBLIC_BRAND` não está setada (ex.: dev). */
 const DEFAULT_BRAND_ID: BrandId = "miqueias";
 
 /** Marca ativa do build, vinda de `NEXT_PUBLIC_BRAND` (inlined) — ver doc no topo. */

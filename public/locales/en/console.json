@@ -20,6 +20,7 @@
     "chatStatus": "Status",
     "online": "Online",
     "offline": "Offline",
+    "unavailable": "Unavailable",
     "loadError": "Could not load Docker."
   },
   "docker": {

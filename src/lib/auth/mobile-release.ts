@@ -6,7 +6,7 @@ import type { Role, User } from "@/types/user";
 /**
  * Páginas e perfis publicados (docs/ambiente-e-build.md → "Páginas publicadas no app"
  * e "Páginas publicadas na web").
- * Só o APK e a web de homologação/produção restringem, cada um pela sua lista; no
+ * Só o APK e a web de produção restringem, cada um pela sua lista; no
  * desenvolvimento (`npm run dev` e APK debug, para testar o que ainda não saiu)
  * tudo continua liberado. Lista vazia (rotas ou perfis) = sem restrição. As
  * páginas fora da lista já saem do artefato no build; aqui o menu e o gate

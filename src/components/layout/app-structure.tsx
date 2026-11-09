@@ -28,11 +28,12 @@ export default function AppStructure({ children }: { children: React.ReactNode }
         <LanguageProvider>
           <AuthProvider>
             <DeviceProvider>
+                {/* Chat: estado único do assistente; o balão é a região `chat`.
+                    Fica acima da Navigation, que tira o chat do menu sem a URL. */}
+                <ChatProvider>
                 {/* System resolve o layout lendo Device + sessão (Auth) + rota;
                     Navigation não decide layout. A ordem aqui é indiferente. */}
                 <NavigationProvider>
-                  {/* Chat: estado único do assistente; o balão é a região `chat`. */}
-                  <ChatProvider>
                   <SystemProvider>
                       <div data-layout-structure className="flex h-dvh flex-col overflow-hidden bg-background">
                           <Header />
@@ -56,8 +57,8 @@ export default function AppStructure({ children }: { children: React.ReactNode }
                           <SystemBackHandler />
                       </div>
                   </SystemProvider>
-                  </ChatProvider>
                 </NavigationProvider>
+                </ChatProvider>
             </DeviceProvider>
           </AuthProvider>
         </LanguageProvider>

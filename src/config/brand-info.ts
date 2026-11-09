@@ -2,7 +2,7 @@ import type { BrandId } from "@/config/brand";
 import type { BrandInfo } from "@/types/brand";
 
 /**
- * Dados institucionais por marca (white-label). Mesmos em dev, homologação e
+ * Dados institucionais por marca (white-label). Mesmos em dev e
  * produção enquanto a API não trouxer por WL. Os da marca `base` são
  * placeholders: cada produto substitui pelos seus. Ver `services/brand`.
  */

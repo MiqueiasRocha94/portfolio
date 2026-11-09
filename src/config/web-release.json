@@ -1,4 +1,4 @@
 {
-  "$comment": "Páginas publicadas na web de homologação/produção (Docker e Workers). Lista vazia = sem restrição; com itens, o que estiver fora sai do build web (rotas dinâmicas, como o 404, ficam) — docs/ambiente-e-build.md → \"Páginas publicadas na web\".",
+  "$comment": "Páginas publicadas na web de produção (Docker e Workers). Lista vazia = sem restrição; com itens, o que estiver fora sai do build web (rotas dinâmicas, como o 404, ficam) — docs/ambiente-e-build.md → \"Páginas publicadas na web\".",
   "routes": ["/", "/sobre-mim", "/chat"]
 }

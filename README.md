@@ -33,8 +33,9 @@ cp .env.example .env
 npm run dev          # http://localhost:3000
 ```
 
-O chat precisa da URL de uma API de assistente em `NEXT_PUBLIC_CHATURL` (`.env.example`); sem ela, a página abre
-sem conexão.
+O chat precisa da URL de uma API de assistente em `CHAT_URL` (`.env.example`), lida em runtime pela rota
+`GET /config/chat`: trocar o valor pede só reiniciar o servidor, sem build. Sem ela, o chat fica indisponível e o
+resto do site funciona normalmente.
 
 ## 3. Estrutura do projeto
 

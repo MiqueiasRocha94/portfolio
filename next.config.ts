@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const isMobileBuild = process.env.NEXT_BUILD_TARGET === "mobile";
-// Build web de homologação/produção: `output: "standalone"` empacota um server
+// Build web de produção: `output: "standalone"` empacota um server
 // Node mínimo (.next/standalone/server.js), usado pelo `npm run start` e pela
 // imagem Docker. O alvo mobile usa `export`.
 const useStandalone = process.env.NEXT_OUTPUT_STANDALONE === "true";

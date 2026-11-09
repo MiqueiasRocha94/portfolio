@@ -1,59 +1,62 @@
+import { runtimeUrl } from "@/lib/env/runtime-config";
 import { apiFetch } from "@/lib/http";
+import { isNativePlatform } from "@/lib/platform/capacitor";
 import type { AiContext, AiPrompt, ChatAudience, ChatReply } from "@/types/chat";
 
 /**
  * Service da API do assistente (Uriel) — docs/integracoes.md → "API do assistente (chat)".
  *
- * A raiz vem de `/api/config` (D1 no Cloudflare) e cai para `NEXT_PUBLIC_CHATURL`
- * quando a rota não responde (ex.: app mobile, que não tem rotas de servidor).
+ * A raiz (`baseUrl`) vem do `ChatContext`: no portfólio, a de `GET /config/chat`
+ * (`loadPublicChatUrl`); no portal, a que o layout do portal entrega ao contexto.
+ * Raiz vazia = chat desligado.
  * Erros chegam como `HttpError`; a decisão do que mostrar fica na tela.
  */
 
-let chatUrlPromise: Promise<string> | null = null;
+export const trimChatUrl = (url: string) => url.trim().replace(/\/+$/, "");
 
-async function loadChatUrl(): Promise<string> {
+/**
+ * Raiz do chat público: `GET /config/chat` (`CHAT_URL` do servidor). Na web, na própria origem; no app, que
+ * não tem servidor, na raiz de acesso (`acessoApiUrl`, a origem do site). Sem valor ou com falha, `""`.
+ */
+export async function loadPublicChatUrl(): Promise<string> {
   try {
-    const response = await fetch("/api/config", { cache: "no-store" });
-    if (response.ok) {
-      const data = (await response.json()) as { chatUrl?: string };
-      if (data.chatUrl) return data.chatUrl;
-    }
-  } catch {
-    // Sem rota de configuração (export estático): vale a variável do build.
+    const response = await apiFetch("/config/chat", {
+      baseUrl: isNativePlatform() ? runtimeUrl("acessoApiUrl") : "",
+      cache: "no-store",
+    });
+    const config = (await response.json()) as { chatUrl?: unknown };
+    return typeof config.chatUrl === "string" ? trimChatUrl(config.chatUrl) : "";
+  } catch (error) {
+    console.warn("[chat] /config/chat indisponível; chat desligado:", error);
+    return "";
   }
-  return process.env.NEXT_PUBLIC_CHATURL ?? "";
 }
 
-async function chatUrl(): Promise<string> {
-  chatUrlPromise ??= loadChatUrl();
-  const url = await chatUrlPromise;
-  if (!url) {
-    chatUrlPromise = null;
-    throw new Error("Endereço da API do assistente não configurado.");
-  }
-  return url.replace(/\/+$/, "");
-}
-
-async function getJson<T>(path: string): Promise<T> {
-  const response = await apiFetch(path, { baseUrl: await chatUrl(), cache: "no-store" });
+async function getJson<T>(baseUrl: string, path: string): Promise<T> {
+  const response = await apiFetch(path, { baseUrl, cache: "no-store" });
   return (await response.json()) as T;
 }
 
-async function postJson<T>(path: string, body: unknown): Promise<T> {
-  const response = await apiFetch(path, { baseUrl: await chatUrl(), method: "POST", body: JSON.stringify(body) });
+async function postJson<T>(baseUrl: string, path: string, body: unknown): Promise<T> {
+  const response = await apiFetch(path, { baseUrl, method: "POST", body: JSON.stringify(body) });
   const text = await response.text();
   return (text ? JSON.parse(text) : undefined) as T;
 }
 
 /** `GET /actuator/health` — o assistente está no ar? */
-export async function isChatOnline(): Promise<boolean> {
-  const health = await getJson<{ status?: string }>("/actuator/health");
+export async function isChatOnline(baseUrl: string): Promise<boolean> {
+  const health = await getJson<{ status?: string }>(baseUrl, "/actuator/health");
   return health.status === "UP";
 }
 
 /** `POST /api/v1/chat` — pergunta ao assistente com o histórico das respostas anteriores. */
-export async function askChat(question: string, previousResponse: string, audience: ChatAudience): Promise<string> {
-  const reply = await postJson<ChatReply>("/api/v1/chat", {
+export async function askChat(
+  baseUrl: string,
+  question: string,
+  previousResponse: string,
+  audience: ChatAudience,
+): Promise<string> {
+  const reply = await postJson<ChatReply>(baseUrl, "/api/v1/chat", {
     id: 0,
     ativo: true,
     name: "Uriel",
@@ -68,26 +71,26 @@ export async function askChat(question: string, previousResponse: string, audien
 }
 
 /** `GET /api/v1/model` — modelos disponíveis no assistente. */
-export function listChatModels(): Promise<{ name: string }[]> {
-  return getJson("/api/v1/model");
+export function listChatModels(baseUrl: string): Promise<{ name: string }[]> {
+  return getJson(baseUrl, "/api/v1/model");
 }
 
 /** `GET /api/v1/admin/list/aicontext/AgentAI` — contexto do agente. */
-export function getAiContext(): Promise<AiContext> {
-  return getJson("/api/v1/admin/list/aicontext/AgentAI");
+export function getAiContext(baseUrl: string): Promise<AiContext> {
+  return getJson(baseUrl, "/api/v1/admin/list/aicontext/AgentAI");
 }
 
 /** `POST /api/v1/admin/aicontext` — cria ou atualiza o contexto. */
-export function saveAiContext(context: AiContext): Promise<void> {
-  return postJson("/api/v1/admin/aicontext", context);
+export function saveAiContext(baseUrl: string, context: AiContext): Promise<void> {
+  return postJson(baseUrl, "/api/v1/admin/aicontext", context);
 }
 
 /** `GET /api/v1/admin/list/prompt/AgentAI` — scripts (prompts) do agente. */
-export function listAiPrompts(): Promise<AiPrompt[]> {
-  return getJson("/api/v1/admin/list/prompt/AgentAI");
+export function listAiPrompts(baseUrl: string): Promise<AiPrompt[]> {
+  return getJson(baseUrl, "/api/v1/admin/list/prompt/AgentAI");
 }
 
 /** `POST /api/v1/admin/prompt` — cria ou atualiza um script. */
-export function saveAiPrompt(prompt: AiPrompt): Promise<void> {
-  return postJson("/api/v1/admin/prompt", prompt);
+export function saveAiPrompt(baseUrl: string, prompt: AiPrompt): Promise<void> {
+  return postJson(baseUrl, "/api/v1/admin/prompt", prompt);
 }

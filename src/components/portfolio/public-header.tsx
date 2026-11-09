@@ -8,6 +8,7 @@ import { NAV_ICONS } from "@/components/navigation/icons";
 import { useAuth } from "@/contexts/AuthContext";
 import { useDevice } from "@/contexts/DeviceContext";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useChatAvailable } from "@/hooks/use-chat-available";
 import { getAppNavigationItems, type NavigationItem } from "@/lib/navigation";
 import { resolveLabel } from "@/lib/navigation-helpers";
 import { cn } from "@/lib/utils";
@@ -25,7 +26,8 @@ const ENTRY_HREFS = new Set(["/login", "/portal/home"]);
  */
 function useHomeNavigation(): { links: NavigationItem[]; entry: NavigationItem | null } {
   const { session, user } = useAuth();
-  const items = getAppNavigationItems(Boolean(session), user, "public");
+  const chat = useChatAvailable() === true;
+  const items = getAppNavigationItems(Boolean(session), user, "public", { chat });
   return {
     links: items.filter((item) => !ENTRY_HREFS.has(item.href)),
     entry: items.find((item) => ENTRY_HREFS.has(item.href)) ?? null,

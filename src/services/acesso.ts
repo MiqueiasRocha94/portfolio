@@ -2,13 +2,13 @@ import { clienteApp } from "@/lib/auth/canal";
 import { obterJktDpop } from "@/lib/auth/dpop";
 import type { AuthSession } from "@/lib/auth/session";
 import { obterAtestadoApp } from "@/lib/platform/app-attestation";
-import { ACESSO_API_URL, chamarApi, renovarSessao } from "@/services/api/cliente";
+import { acessoApiUrl, chamarApi, renovarSessao } from "@/services/api/cliente";
 import type { SessaoAcesso } from "@/types/acesso";
 
 /**
  * Service de ACESSO — auth da API (docs/autenticacao-e-permissoes.md).
  *
- * Com `ACESSO_API_URL` definido fala com a API (`chamarApi`); sem ele usa o
+ * Com `acessoApiUrl()` definido fala com a API (`chamarApi`); sem ele usa o
  * dev-backend, que reproduz o mesmo contrato. As telas nao sabem a origem.
  * Canal, captcha, DPoP e refresh seguem docs/autenticacao-e-permissoes.md "Canais".
  *
@@ -16,9 +16,9 @@ import type { SessaoAcesso } from "@/types/acesso";
  * API). A decisao do que fazer (401 → login, 403 → mensagem...) fica no chamador.
  */
 
-export { ACESSO_API_URL };
+export { acessoApiUrl };
 
-const usaApi = () => Boolean(ACESSO_API_URL);
+const usaApi = () => Boolean(acessoApiUrl());
 
 async function chamar(caminho: string, init: RequestInit = {}, token?: string): Promise<SessaoAcesso> {
   const response = await chamarApi(caminho, { ...init, token });

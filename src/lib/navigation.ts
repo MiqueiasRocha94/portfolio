@@ -80,6 +80,11 @@ export type NavIconKey =
   | "server"
   | "router";
 
+/** Serviço externo de que um item depende: sem ele configurado, o item sai do menu. */
+export type NavService = "chat";
+/** Serviços ligados no momento (ex.: `{ chat: true }`); ausente = desligado. */
+export type NavServices = Partial<Record<NavService, boolean>>;
+
 export type NavigationItem = {
   href: string;
   icon: NavIconKey;
@@ -96,10 +101,15 @@ export type NavigationItem = {
   // RBAC de menu: exige permissões (todas) e/ou papéis (qualquer) do usuário.
   requiredPermissions?: Permission[];
   requiredRoles?: Role[];
+  // Serviço de que o item depende (ex.: o chat sem a URL do assistente fica fora).
+  service?: NavService;
 };
 
-// Item visível se satisfaz as permissões (todas) e os papéis (qualquer) exigidos.
-function canSeeNavItem(item: NavigationItem, user: User | null): boolean {
+// Item visível se o serviço dele está ligado e satisfaz as permissões (todas) e os papéis (qualquer) exigidos.
+function canSeeNavItem(item: NavigationItem, user: User | null, services: NavServices): boolean {
+  if (item.service && !services[item.service]) {
+    return false;
+  }
   // No app, folha de página não publicada sai do menu (contêiner: pela poda dos filhos).
   if (!item.children?.length && !isRouteReleased(item.href)) {
     return false;
@@ -112,10 +122,10 @@ function canSeeNavItem(item: NavigationItem, user: User | null): boolean {
 // Filtra recursivamente a árvore de navegação pelas permissões do usuário logado.
 // Contêiner (item com `children`) cujos filhos foram todos filtrados é descartado —
 // evita módulo de menu vazio para quem não tem nenhuma ação dele.
-function filterNavigation(items: NavigationItem[], user: User | null): NavigationItem[] {
+function filterNavigation(items: NavigationItem[], user: User | null, services: NavServices): NavigationItem[] {
   return items
-    .filter((item) => canSeeNavItem(item, user))
-    .map((item) => (item.children ? { ...item, children: filterNavigation(item.children, user) } : item))
+    .filter((item) => canSeeNavItem(item, user, services))
+    .map((item) => (item.children ? { ...item, children: filterNavigation(item.children, user, services) } : item))
     .filter((item) => !item.children || item.children.length > 0);
 }
 
@@ -130,6 +140,7 @@ export function getAppNavigationItems(
   hasSession: boolean,
   user: User | null = null,
   area: NavigationArea = "portal",
+  services: NavServices = {},
 ): NavigationItem[] {
   // Portfólio (docs/specs/portfolio-publico.md): destinos públicos + a entrada do
   // portal. O login só abre por um botão (`markLoginEntry`); no desktop ele fica
@@ -139,11 +150,11 @@ export function getAppNavigationItems(
     return filterNavigation([
       { href: "/", icon: "home", labelKey: "publicHome", primary: true },
       { href: "/sobre-mim", icon: "profile", labelKey: "about", primary: true },
-      { href: "/chat", icon: "chat", labelKey: "uriel", primary: true },
+      { href: "/chat", icon: "chat", labelKey: "uriel", primary: true, service: "chat" },
       hasSession
         ? { href: "/portal/home", icon: "portal", labelKey: "portal", primary: true }
         : { href: "/login", icon: "login", labelKey: "login", primary: true, mobileOnly: true, onSelect: markLoginEntry },
-    ], user);
+    ], user, services);
   }
 
   if (!hasSession) {
@@ -155,11 +166,11 @@ export function getAppNavigationItems(
     // Barra principal (itens marcados como primary).
     { href: "/portal/home", icon: "home", labelKey: "portal", primary: true },
     { href: "/portal/docker", icon: "docker", labelKey: "docker", primary: true, requiredRoles: ["ADMIN"] },
-    { href: "/portal/chat", icon: "chat", labelKey: "chat", primary: true, requiredRoles: ["ADMIN"] },
+    { href: "/portal/chat", icon: "chat", labelKey: "chat", primary: true, requiredRoles: ["ADMIN"], service: "chat" },
     { href: "/portal/profile", icon: "profile", labelKey: "profile", mobileOnly: true, primary: true },
     { href: "/portal/apache", icon: "server", labelKey: "apache", requiredRoles: ["ADMIN"] },
     { href: "/portal/roteador", icon: "router", labelKey: "router", requiredRoles: ["ADMIN"] },
-  ], user);
+  ], user, services);
 }
 
 export function getDesktopNavigationItems(items: NavigationItem[]) {

@@ -5,6 +5,7 @@ import { createContext, useCallback, useContext, useMemo, useState } from "react
 
 import { useAuth } from "@/contexts/AuthContext";
 import { useDevice } from "@/contexts/DeviceContext";
+import { useChatAvailable } from "@/hooks/use-chat-available";
 import {
   getAppNavigationItems,
   getNavigationArea,
@@ -65,10 +66,11 @@ export function NavigationProvider({ children }: { children: React.ReactNode }) 
   const { view } = useDevice();
   const pathname = usePathname();
   const area = getNavigationArea(pathname);
+  const chat = useChatAvailable() === true;
   const [stack, setStack] = useState<StackEntry[]>([]);
 
   const derived = useMemo(() => {
-    const items = getAppNavigationItems(Boolean(session), user, area);
+    const items = getAppNavigationItems(Boolean(session), user, area, { chat });
     const desktopItems = getDesktopNavigationItems(items);
     const mobileItems = getMobileNavigationItems(items);
     const mobileGroups = getMobileNavigationGroups(mobileItems);
@@ -96,7 +98,7 @@ export function NavigationProvider({ children }: { children: React.ReactNode }) 
       menuRoot,
       placement: (view === "mobile" ? mobileMode : desktopMode) as NavigationPlacement,
     };
-  }, [session, user, view, area]);
+  }, [session, user, view, area, chat]);
 
   const onCollapse = useCallback(() => setStack([]), []);
 
