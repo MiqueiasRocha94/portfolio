@@ -26,7 +26,8 @@
     "router": "Roteador",
     "publicHome": "Início",
     "about": "Sobre",
-    "uriel": "Uriel"
+    "uriel": "Uriel",
+    "resume": "Currículo"
   },
   "common": {
     "locale": "Idioma",

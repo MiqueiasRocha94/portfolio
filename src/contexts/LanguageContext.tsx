@@ -37,7 +37,7 @@ function resolveInitialLocale(): AppLocale {
 /** Rotas públicas do portfólio (docs/specs/portfolio-publico.md). */
 const PORTFOLIO_PATHS = new Set(["/", "/sobre-mim", "/chat"]);
 /** Módulos de operação do portal (docs/specs/portal-privado.md). */
-const CONSOLE_PATHS = ["/portal/home", "/portal/docker", "/portal/chat", "/portal/apache", "/portal/roteador"];
+const CONSOLE_PATHS = ["/portal/home", "/portal/docker", "/portal/chat", "/portal/curriculo", "/portal/apache", "/portal/roteador"];
 
 function namespaceForPath(pathname: string): LazyNamespaceKey | null {
   if (pathname.startsWith("/portal/profile")) return "profile";

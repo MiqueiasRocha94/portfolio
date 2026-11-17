@@ -13,6 +13,7 @@ import {
   TechnologiesSection,
   TimelineSection,
 } from "@/components/portfolio/profile-sections";
+import { ResumeDownloadButton } from "@/components/resume/resume-download-button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useChatAvailable } from "@/hooks/use-chat-available";
 import { usePortfolioText } from "@/hooks/use-portfolio-text";
@@ -83,6 +84,11 @@ export function ProfileScreen() {
                       {t.profile.talk}
                     </Link>
                   )}
+                  <ResumeDownloadButton
+                    label={t.profile.downloadResume}
+                    errorLabel={t.profile.downloadResumeError}
+                    className="font-display rounded-xl border border-primary/40 px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.12em] text-text transition hover:border-primary hover:bg-text/5 disabled:opacity-70"
+                  />
                 </div>
               </div>
             </section>

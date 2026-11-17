@@ -8,6 +8,7 @@
     "/portal/home",
     "/portal/docker",
     "/portal/chat",
+    "/portal/curriculo",
     "/portal/profile"
   ]
 }

@@ -65,4 +65,5 @@ export const NAV_ICONS: Record<NavIconKey, ReactNode> = {
   chat: <MessageSquare className="h-5 w-5" />,
   server: <Server className="h-5 w-5" />,
   router: <Router className="h-5 w-5" />,
+  resume: <FileText className="h-5 w-5" />,
 };

@@ -44,6 +44,7 @@ export type NavLabelKey =
   | "profile"
   | "publicHome"
   | "reports"
+  | "resume"
   | "router"
   | "uriel";
 export type NavIconKey =
@@ -78,7 +79,8 @@ export type NavIconKey =
   | "docker"
   | "chat"
   | "server"
-  | "router";
+  | "router"
+  | "resume";
 
 /** Serviço externo de que um item depende: sem ele configurado, o item sai do menu. */
 export type NavService = "chat";
@@ -168,6 +170,7 @@ export function getAppNavigationItems(
     { href: "/portal/docker", icon: "docker", labelKey: "docker", primary: true, requiredRoles: ["ADMIN"] },
     { href: "/portal/chat", icon: "chat", labelKey: "chat", primary: true, requiredRoles: ["ADMIN"], service: "chat" },
     { href: "/portal/profile", icon: "profile", labelKey: "profile", mobileOnly: true, primary: true },
+    { href: "/portal/curriculo", icon: "resume", labelKey: "resume", requiredRoles: ["ADMIN"] },
     { href: "/portal/apache", icon: "server", labelKey: "apache", requiredRoles: ["ADMIN"] },
     { href: "/portal/roteador", icon: "router", labelKey: "router", requiredRoles: ["ADMIN"] },
   ], user, services);

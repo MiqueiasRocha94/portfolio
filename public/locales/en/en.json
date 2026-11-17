@@ -26,7 +26,8 @@
     "router": "Router",
     "publicHome": "Home",
     "about": "About",
-    "uriel": "Uriel"
+    "uriel": "Uriel",
+    "resume": "Résumé"
   },
   "common": {
     "locale": "Locale",

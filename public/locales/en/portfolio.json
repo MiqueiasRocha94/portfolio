@@ -61,7 +61,9 @@
     "top": "↑ Top",
     "urielKicker": "Uriel · career assistant",
     "urielText": "Want details about projects, stack or experience? Ask Uriel directly — the AI assistant that knows my career.",
-    "urielCta": "Ask anything about Miqueias…"
+    "urielCta": "Ask anything about Miqueias…",
+    "downloadResume": "Download résumé",
+    "downloadResumeError": "Could not generate the résumé."
   },
   "gitStats": {
     "github": {

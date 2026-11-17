@@ -61,7 +61,9 @@
     "top": "↑ Arriba",
     "urielKicker": "Uriel · asistente de carrera",
     "urielText": "¿Quieres detalles sobre proyectos, stack o experiencia? Pregúntale directamente a Uriel — el asistente de IA que conoce mi trayectoria.",
-    "urielCta": "Pregunta cualquier cosa sobre Miqueias…"
+    "urielCta": "Pregunta cualquier cosa sobre Miqueias…",
+    "downloadResume": "Descargar currículum",
+    "downloadResumeError": "No se pudo generar el currículum."
   },
   "gitStats": {
     "github": {
