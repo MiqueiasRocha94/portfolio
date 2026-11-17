@@ -47,12 +47,11 @@ export function AboutSection({ t }: { t: Text }) {
     <section ref={ref} className="space-y-6">
       <SectionTitle className={enter(inView)}>{t.about.title}</SectionTitle>
       <div className="grid gap-8 leading-relaxed text-text-muted md:grid-cols-2">
-        <p className={enter(inView)} style={delay(0.3)}>
-          {t.about.paragraph1}
-        </p>
-        <p className={enter(inView)} style={delay(0.6)}>
-          {t.about.paragraph2}
-        </p>
+        {t.about.full.map((paragraph, index) => (
+          <p key={paragraph} className={enter(inView)} style={delay(0.3 + index * 0.15)}>
+            {paragraph}
+          </p>
+        ))}
       </div>
     </section>
   );

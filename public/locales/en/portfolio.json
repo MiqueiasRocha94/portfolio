@@ -30,7 +30,7 @@
     ]
   },
   "profile": {
-    "kicker": "Tech Lead · Belo Horizonte, BR",
+    "kicker": "Software Architecture · Belo Horizonte, BR",
     "photoAlt": "Photo of Miqueias Rocha",
     "projects": "See projects →",
     "talk": "Talk to Uriel",
@@ -41,7 +41,7 @@
       },
       {
         "k": "Experience",
-        "v": "Full Stack + Leadership"
+        "v": "Full Stack + Architecture"
       },
       {
         "k": "Core stack",
@@ -49,7 +49,7 @@
       },
       {
         "k": "Education",
-        "v": "Computer Science"
+        "v": "Computer Science · Una"
       }
     ],
     "status": "Status",
@@ -67,8 +67,8 @@
     "github": {
       "title": "GitHub Stats",
       "items": [
-        "Total repositories",
-        "Stars",
+        "Repositories",
+        "Total commits",
         "Commits this year"
       ]
     },
@@ -76,25 +76,31 @@
       "title": "GitLab Stats",
       "items": [
         "Projects",
-        "Contributions",
-        "Resolved issues"
+        "Total commits",
+        "Commits this year"
       ]
     }
   },
   "header": {
-    "title": "Tech Lead | Java Full Stack Developer",
-    "description": "I am a Java Developer and Technical Lead with Full Stack experience, focused on building robust and efficient solutions. Currently, I work at BrTec as a developer, where I was hired after my internship and continue improving my skills using modern development technologies."
+    "title": "Software Engineer | Tech Lead",
+    "description": "Software engineer with 3+ years of experience, specialized in Java and Spring and focused on software architecture. I design corporate systems to evolve safely — clear boundaries between modules, stable API contracts and documented decisions — and work end to end, from back end to web and mobile front end and infrastructure."
   },
   "about": {
     "title": "About Me",
     "paragraph1": "I have strong expertise in Java (Spring Boot, Hibernate), but I also have relevant experience with other languages and frameworks such as Python, Node.js (Next.js), and PHP. This versatility allows me to adapt to different challenges and work on both front-end and back-end development.",
-    "paragraph2": "My professional background includes solid experience in management and coordination, acquired through leadership roles in commercial and administrative sectors. These experiences provided me with strategic vision and interpersonal skills that I now apply in my career as a software developer."
+    "paragraph2": "My professional background includes solid experience in management and coordination, acquired through leadership roles in commercial and administrative sectors. These experiences provided me with strategic vision and interpersonal skills that I now apply in my career as a software developer.",
+    "full": [
+      "Software architecture is at the core of my work. I apply Clean Architecture and Domain-Driven Design (DDD) to separate responsibilities and set boundaries between modules, preserve API contracts across versions and record technical decisions, keeping the current state of the system apart from proposed changes. The goal is for the system to stay easy to change as it grows.",
+      "My foundation is back-end development with Java and Spring Boot — Spring Security, JPA/Hibernate and REST APIs documented with OpenAPI. I also work on the front end with Next.js, React, React Native, Angular and Capacitor, delivering a single codebase for web and mobile, and on infrastructure with Docker, Linux, CI/CD pipelines and Cloudflare.",
+      "I also bring AI agents into development through Spec-Driven Development: versioned specifications, with requirements and acceptance criteria, guide the implementation and act as a contract between people and agents. With a well-defined architecture, AI speeds up delivery without compromising the quality of the system.",
+      "Before technology, I spent more than ten years in administrative work and team coordination. That background gave me communication with business areas and product vision, which helps translate needs into architecture decisions."
+    ]
   },
   "education": {
     "title": "Academic Background",
     "degrees": {
       "title": "Bachelor's Degree in Computer Science",
-      "university": "FUMEC University, 2021 - 2025",
+      "university": "Centro Universitário Una · expected graduation Dec 2027",
       "description": "Focused on algorithms, data structures, networks, and software development."
     }
   },
@@ -103,7 +109,7 @@
     "brtec": {
       "role": "Software Developer - BrTec",
       "period": "2023 - Present",
-      "description": "Joined as a software development intern in 2023 and became a full-time employee in 2024. Works on system development and maintenance using modern backend and frontend technologies."
+      "description": "Joined as an intern in 2023 and was hired full-time in 2024. Plans and defines system architecture, sets code and documentation standards and drives the technological evolution of a corporate financial system, including the restructuring of its API architecture. Also works on a multi-tenant, white-label platform with web and mobile apps and structures the integration, delivery and app publishing processes."
     },
     "itau": {
       "role": "Commercial Intern - Itaú",

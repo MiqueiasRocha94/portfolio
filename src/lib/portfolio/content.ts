@@ -36,8 +36,8 @@ export const TECHNOLOGIES: Technology[] = [
 
 /** Valores dos cartões de estatística, na ordem dos rótulos de `gitStats.<fonte>.items`. */
 export const GIT_STATS = {
-  github: ["50+", "120+", "350+"],
-  gitlab: ["25+", "180+", "90+"],
+  github: ["14", "270+", "220+"],
+  gitlab: ["7", "760+", "410+"],
 } as const;
 
 export type GitStatsSource = keyof typeof GIT_STATS;

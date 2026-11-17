@@ -94,14 +94,6 @@ export function ProfileScreen() {
                   <span className="text-sm font-semibold text-text">{fact.v}</span>
                 </div>
               ))}
-              <div className="hidden md:block md:flex-1" />
-              <div className="flex flex-col gap-0.5">
-                <span className="font-display text-[10px] uppercase tracking-[0.2em] text-text-muted">{t.profile.status}</span>
-                <span className="text-sm font-semibold text-text">
-                  <span className="text-success">● </span>
-                  {t.profile.open}
-                </span>
-              </div>
             </div>
 
             <div className="mt-12 space-y-12 rounded-3xl border border-primary/25 bg-text/[0.015] p-6 sm:p-10">

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { ChevronDown, LayoutGrid, Search, X } from "lucide-react";
+import { ChevronDown, LayoutGrid, Menu as MenuIcon, Search, X } from "lucide-react";
 
 import { DrawerSectionLabel, ProfileDrawerSection } from "@/components/profile-panel";
 
@@ -209,7 +209,13 @@ export function FooterNavigation({
   // Barra adaptada por escala: home · dinâmicos · Menu+Perfil (sempre no fim).
   // O excedente fica na gaveta do Menu.
   const barGroups = useMemo(() => getMobileNavigationGroups(items, maxCells, pins), [items, maxCells, pins]);
-  const fixedLeft = barGroups.left;
+  // Sem sessão não há conta: se todos os itens cabem na barra, o Menu sai e as
+  // células são os próprios itens; se não cabem, o Menu fica só como gaveta do
+  // excedente (sem avatar nem CONTA).
+  const hasSession = session != null;
+  const guestItems = items.filter((item) => item.href !== MOBILE_PINNED_HREF);
+  const guestFitsAll = !hasSession && guestItems.length <= maxCells;
+  const fixedLeft = guestFitsAll ? guestItems : barGroups.left;
 
   // Célula da barra: um módulo (item com filhos) abre a GAVETA focada nele (mesmo
   // padrão do Menu); uma folha é um link normal. Sem mais barras contextuais.
@@ -256,7 +262,7 @@ export function FooterNavigation({
   const menuSource = menuFocusHref ? navItems.filter((item) => item.href === menuFocusHref) : navItems;
   const menuItems = filterNavigationByQuery(menuSource, menuQuery, dictionary);
   // Conta (perfil) no topo só na gaveta "completa" (botão Menu, sem busca).
-  const showProfile = !menuFocusHref && !menuFiltering;
+  const showProfile = hasSession && !menuFocusHref && !menuFiltering;
   const resultCount = menuFiltering ? countNavigationLeaves(menuItems) : 0;
   const drawer = menuOpenFull ? (
     <div
@@ -324,7 +330,6 @@ export function FooterNavigation({
   ) : null;
 
   const menuActive = (menuOpenFull && menuFocusHref === null) || pathname.startsWith(MOBILE_PINNED_HREF);
-  const initials = getInitials(session?.username || session?.email || dictionary.nav.title);
 
   // Tela com saída (type="back") e/ou ações (type="action") → modo CONTEXTUAL:
   // `Home · Voltar · Ações · Menu`. Voltar é navegação (um toque, célula própria);
@@ -340,10 +345,11 @@ export function FooterNavigation({
   if (showBack) livres -= 1;
   const showHome = contextMode && homeItem != null && livres > 0;
 
-  // Colunas = células presentes + Menu (sempre).
+  // Menu sempre presente, exceto sem sessão com todos os itens na barra.
+  const showMenu = contextMode || !guestFitsAll;
   const barColumns = contextMode
     ? 1 + (hasActions ? 1 : 0) + (showBack ? 1 : 0) + (showHome ? 1 : 0)
-    : fixedLeft.length + 1;
+    : fixedLeft.length + (showMenu ? 1 : 0);
 
   return (
     <>
@@ -393,24 +399,33 @@ export function FooterNavigation({
             fixedLeft.map(fixedCell)
           )}
 
-          {/* Menu + Perfil: avatar do usuário; abre a gaveta com a conta no topo. */}
-          <button
-            type="button"
-            aria-expanded={menuOpenFull && menuFocusHref === null}
-            onClick={() => openMenu()}
-            className={footerCellClass(menuActive)}
-          >
-            <span
-              aria-hidden="true"
-              className={cn(
-                "inline-flex size-6 items-center justify-center rounded-full text-[10px] font-bold leading-none",
-                menuActive ? "bg-on-primary-strong text-primary-strong" : "bg-primary text-on-primary",
-              )}
+          {/* Menu + Perfil: avatar do usuário; abre a gaveta com a conta no topo.
+              Sem sessão: ícone de menu e gaveta só com a navegação. */}
+          {showMenu ? (
+            <button
+              type="button"
+              aria-expanded={menuOpenFull && menuFocusHref === null}
+              onClick={() => openMenu()}
+              className={footerCellClass(menuActive)}
             >
-              {initials}
-            </span>
-            <span className="max-w-full truncate">{dictionary.nav.title}</span>
-          </button>
+              {hasSession ? (
+                <span
+                  aria-hidden="true"
+                  className={cn(
+                    "inline-flex size-6 items-center justify-center rounded-full text-[10px] font-bold leading-none",
+                    menuActive ? "bg-on-primary-strong text-primary-strong" : "bg-primary text-on-primary",
+                  )}
+                >
+                  {getInitials(session.username || session.email || dictionary.nav.title)}
+                </span>
+              ) : (
+                <span aria-hidden="true" className="inline-flex items-center justify-center leading-none">
+                  <MenuIcon className="size-5" />
+                </span>
+              )}
+              <span className="max-w-full truncate">{dictionary.nav.title}</span>
+            </button>
+          ) : null}
         </div>
       </nav>
     </>

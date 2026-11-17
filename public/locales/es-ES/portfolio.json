@@ -30,7 +30,7 @@
     ]
   },
   "profile": {
-    "kicker": "Tech Lead · Belo Horizonte, BR",
+    "kicker": "Arquitectura de Software · Belo Horizonte, BR",
     "photoAlt": "Foto de Miqueias Rocha",
     "projects": "Ver proyectos →",
     "talk": "Hablar con Uriel",
@@ -41,7 +41,7 @@
       },
       {
         "k": "Experiencia",
-        "v": "Full Stack + Liderazgo"
+        "v": "Full Stack + Arquitectura"
       },
       {
         "k": "Stack principal",
@@ -49,7 +49,7 @@
       },
       {
         "k": "Formación",
-        "v": "Ciencias de la Computación"
+        "v": "Ciencias de la Computación · Una"
       }
     ],
     "status": "Estado",
@@ -67,8 +67,8 @@
     "github": {
       "title": "GitHub Stats",
       "items": [
-        "Total de repositorios",
-        "Estrellas",
+        "Repositorios",
+        "Commits en total",
         "Commits este año"
       ]
     },
@@ -76,25 +76,31 @@
       "title": "GitLab Stats",
       "items": [
         "Proyectos",
-        "Contribuciones",
-        "Issues resueltas"
+        "Commits en total",
+        "Commits este año"
       ]
     }
   },
   "header": {
-    "title": "Tech Lead | Desarrollador Java Full Stack",
-    "description": "Soy Desarrollador Java y Líder Técnico con experiencia Full Stack, enfocado en crear soluciones robustas y eficientes. Actualmente trabajo en BrTec como desarrollador, donde fui contratado después de mi pasantía y continúo mejorando mis habilidades con tecnologías modernas de desarrollo."
+    "title": "Ingeniero de Software | Tech Lead",
+    "description": "Ingeniero de software con más de 3 años de experiencia, especializado en Java y Spring y enfocado en arquitectura de software. Diseño sistemas corporativos para evolucionar con seguridad — límites claros entre módulos, contratos de API estables y decisiones documentadas — y trabajo de punta a punta, del back-end al front-end web y móvil y a la infraestructura."
   },
   "about": {
     "title": "Sobre mí",
     "paragraph1": "Tengo un sólido dominio de Java (Spring Boot, Hibernate), pero también cuento con experiencia relevante en otros lenguajes y frameworks como Python, Node.js (Next.js) y PHP. Esta versatilidad me permite adaptarme a diferentes desafíos y trabajar tanto en el front-end como en el back-end.",
-    "paragraph2": "Mi trayectoria profesional incluye una sólida experiencia en gestión y coordinación, adquirida en roles de liderazgo en los sectores comercial y administrativo. Estas experiencias me proporcionaron una visión estratégica y habilidades interpersonales que hoy aplico en mi carrera como desarrollador de software."
+    "paragraph2": "Mi trayectoria profesional incluye una sólida experiencia en gestión y coordinación, adquirida en roles de liderazgo en los sectores comercial y administrativo. Estas experiencias me proporcionaron una visión estratégica y habilidades interpersonales que hoy aplico en mi carrera como desarrollador de software.",
+    "full": [
+      "La arquitectura de software es el centro de mi trabajo. Aplico Clean Architecture y Domain-Driven Design (DDD) para separar responsabilidades y establecer límites entre módulos, preservo los contratos de API entre versiones y registro las decisiones técnicas, separando el estado actual del sistema de los cambios propuestos. El objetivo es que el sistema siga siendo fácil de cambiar a medida que crece.",
+      "Mi base es el back-end con Java y Spring Boot — Spring Security, JPA/Hibernate y APIs REST documentadas con OpenAPI. También trabajo en el front-end con Next.js, React, React Native, Angular y Capacitor, entregando una misma base para web y móvil, y en la infraestructura con Docker, Linux, pipelines de CI/CD y Cloudflare.",
+      "También incorporo agentes de IA al desarrollo con Spec-Driven Development: especificaciones versionadas, con requisitos y criterios de aceptación, guían la implementación y sirven de contrato entre personas y agentes. Con la arquitectura bien definida, la IA acelera la entrega sin comprometer la calidad del sistema.",
+      "Antes de la tecnología, pasé más de diez años en rutinas administrativas y en la coordinación de equipos. Esa trayectoria me dio comunicación con las áreas de negocio y visión de producto, lo que ayuda a traducir necesidades en decisiones de arquitectura."
+    ]
   },
   "education": {
     "title": "Formación Académica",
     "degrees": {
       "title": "Licenciatura en Ciencias de la Computación",
-      "university": "Universidad FUMEC, 2021 - 2025",
+      "university": "Centro Universitário Una · graduación prevista en dic/2027",
       "description": "Enfoque en algoritmos, estructuras de datos, redes y desarrollo de sistemas."
     }
   },
@@ -103,7 +109,7 @@
     "brtec": {
       "role": "Desarrollador de Software - BrTec",
       "period": "2023 - Presente",
-      "description": "Ingresó como pasante en desarrollo de software en 2023 y fue contratado en 2024. Actualmente trabaja en el desarrollo y mantenimiento de sistemas utilizando tecnologías modernas de backend y frontend."
+      "description": "Ingresó como pasante en 2023 y fue contratado en 2024. Planifica y define la arquitectura de los sistemas, establece estándares de código y documentación y conduce la evolución tecnológica de un sistema financiero corporativo, incluida la reestructuración de la arquitectura de su API. También trabaja en una plataforma multi-tenant y white-label con aplicaciones web y móviles y estructura los procesos de integración, entrega y publicación de aplicaciones."
     },
     "itau": {
       "role": "Pasante Comercial - Itaú",

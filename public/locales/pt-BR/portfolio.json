@@ -30,7 +30,7 @@
     ]
   },
   "profile": {
-    "kicker": "Tech Lead · Belo Horizonte, BR",
+    "kicker": "Arquitetura de Software · Belo Horizonte, BR",
     "photoAlt": "Foto de Miqueias Rocha",
     "projects": "Ver projetos →",
     "talk": "Falar com o Uriel",
@@ -41,7 +41,7 @@
       },
       {
         "k": "Experiência",
-        "v": "Full Stack + Liderança"
+        "v": "Full Stack + Arquitetura"
       },
       {
         "k": "Stack núcleo",
@@ -49,7 +49,7 @@
       },
       {
         "k": "Formação",
-        "v": "Ciência da Computação"
+        "v": "Ciência da Computação · Una"
       }
     ],
     "status": "Status",
@@ -67,8 +67,8 @@
     "github": {
       "title": "GitHub Stats",
       "items": [
-        "Total de Repositórios",
-        "Estrelas",
+        "Repositórios",
+        "Commits no total",
         "Commits este ano"
       ]
     },
@@ -76,25 +76,31 @@
       "title": "GitLab Stats",
       "items": [
         "Projetos",
-        "Contribuições",
-        "Issues Resolvidas"
+        "Commits no total",
+        "Commits este ano"
       ]
     }
   },
   "header": {
-    "title": "Tech Lead | Java Full Stack Developer",
-    "description": "Sou Desenvolvedor Java e Líder Técnico com experiência Full Stack, focado em criar soluções robustas e eficientes. Atualmente, atuo na BrTec como desenvolvedor, onde fui efetivado e aprimoro minhas habilidades com as mais recentes tecnologias de desenvolvimento."
+    "title": "Engenheiro de Software | Tech Lead",
+    "description": "Engenheiro de software com mais de 3 anos de experiência, especializado em Java e Spring e focado em arquitetura de software. Desenho sistemas corporativos para evoluir com segurança — limites claros entre módulos, contratos de API estáveis e decisões documentadas — e atuo de ponta a ponta, do backend ao frontend web e mobile e à infraestrutura."
   },
   "about": {
     "title": "Sobre Mim",
     "paragraph1": "Tenho um domínio sólido em Java (Spring Boot, Hibernate), mas também possuo experiência relevante com outras linguagens e frameworks como Python, Node.js (Next.js) e PHP. Essa versatilidade me permite adaptar a diferentes desafios e atuar tanto no front-end quanto no back-end.",
-    "paragraph2": "Minha trajetória profissional é marcada por uma sólida experiência em gestão e coordenação, adquirida em cargos de liderança nos setores comercial e administrativo. Essas experiências me deram uma visão estratégica e habilidades interpessoais que hoje aplico na minha carreira como desenvolvedor."
+    "paragraph2": "Minha trajetória profissional é marcada por uma sólida experiência em gestão e coordenação, adquirida em cargos de liderança nos setores comercial e administrativo. Essas experiências me deram uma visão estratégica e habilidades interpessoais que hoje aplico na minha carreira como desenvolvedor.",
+    "full": [
+      "Arquitetura de software é o centro do meu trabalho. Aplico Clean Architecture e Domain-Driven Design (DDD) para separar responsabilidades e estabelecer limites entre módulos, preservo contratos de API entre versões e registro as decisões técnicas, separando o estado atual do sistema das mudanças propostas. O objetivo é que o sistema continue fácil de mudar à medida que cresce.",
+      "Minha base é o backend com Java e Spring Boot — Spring Security, JPA/Hibernate e APIs REST documentadas com OpenAPI. Também atuo no frontend com Next.js, React, React Native, Angular e Capacitor, entregando uma mesma base para web e mobile, e na infraestrutura com Docker, Linux, pipelines de CI/CD e Cloudflare.",
+      "Também incorporo agentes de IA ao desenvolvimento com Spec-Driven Development: especificações versionadas, com requisitos e critérios de aceitação, guiam a implementação e servem de contrato entre pessoas e agentes. Com a arquitetura bem definida, a IA acelera a entrega sem comprometer a qualidade do sistema.",
+      "Antes da tecnologia, passei mais de dez anos em rotinas administrativas e na coordenação de equipes. Essa trajetória me deu comunicação com as áreas de negócio e visão de produto, o que ajuda a traduzir necessidades em decisões de arquitetura."
+    ]
   },
   "education": {
     "title": "Formação Acadêmica",
     "degrees": {
-      "title": "Bacharel em Ciência da Computação",
-      "university": "Universidade Fumec, 2021 - 2025",
+      "title": "Bacharelado em Ciência da Computação",
+      "university": "Centro Universitário Una · conclusão prevista em dez/2027",
       "description": "Foco em algoritmos, estrutura de dados, redes e desenvolvimento de sistemas."
     }
   },
@@ -103,7 +109,7 @@
     "brtec": {
       "role": "Desenvolvedor de Software - BrTec",
       "period": "2023 - Presente",
-      "description": "Ingressou como estagiário em 2023 na área de desenvolvimento de software e foi efetivado em 2024. Atua no desenvolvimento e manutenção de sistemas, aplicando tecnologias modernas de backend e frontend."
+      "description": "Ingressou como estagiário em 2023 e foi efetivado em 2024. Planeja e define a arquitetura dos sistemas, estabelece padrões de código e documentação e conduz a evolução tecnológica de um sistema financeiro corporativo, incluindo a reestruturação da arquitetura da API. Atua também em uma plataforma multi-tenant e white-label com aplicações web e mobile e estrutura os processos de integração, entrega e publicação de aplicativos."
     },
     "itau": {
       "role": "Estagiário de Comercial - Itaú",
